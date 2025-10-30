@@ -1,0 +1,12 @@
+name: (Disabled) Build PDF
+
+on:
+  # Disabled by default – keeping only manual trigger if you ever want it.
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skipped
+        run: echo "PDF pipeline disabled. Web-only project."

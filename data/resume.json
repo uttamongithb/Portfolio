@@ -1,0 +1,88 @@
+{
+  "basics": {
+    "name": "Uttam Kumar",
+    "label": "Full-Stack Web Developer",
+    "email": "uttamonemail@gmail.com",
+    "phone": "+91 9696391458",
+    "location": "Prayagraj, Uttar Pradesh, India",
+    "url": "https://linkedin.com/in/uttam-kb",
+  "summary": "Full‑stack developer (MERN) with hands‑on experience building and deploying production‑style apps. Shipped an end‑to‑end e‑commerce platform with Stripe payments, JWT RBAC, REST APIs, and realtime chat. Strengths: React, Node.js, Express, MongoDB, TypeScript, and cloud deployments on Vercel/Render with MongoDB Atlas.",
+    "profiles": [
+      { "network": "LinkedIn", "url": "https://linkedin.com/in/uttam-kb" },
+      { "network": "GitHub", "url": "https://github.com/uttamongithb/" },
+      { "network": "Instagram", "url": "https://www.instagram.com/uttamoninsta/" },
+      { "network": "X", "url": "https://x.com/uttamonx" }
+    ]
+  },
+  "work": [
+    {
+      "name": "Freelance Project - ShopHub E-commerce",
+      "position": "Full-Stack Developer",
+      "startDate": "Jan 2025",
+      "endDate": "May 2025",
+      "summary": "Delivered a full-stack MERN e-commerce application with secure payments and an admin panel.",
+      "highlights": [
+        "Integrated Stripe Payment Intents for secure checkout with success/cancel handling",
+        "Implemented JWT authentication with role-based access control (admin, user)",
+        "Built 20+ REST endpoints (auth, products, orders, payments) with centralized error handling"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "ShopHub E-Commerce Store (Full-Stack MERN)",
+      "description": "Production-ready MERN e-commerce with payments, auth, admin, reviews, and orders.",
+      "techStack": "React, Node.js, Express, MongoDB, Stripe, JWT, Vite",
+      "liveLink": "https://freelance-e-commerce-frontend.vercel.app",
+      "highlights": [
+        "Cart, checkout, order history, and an admin dashboard for product and order management",
+        "REST API for auth/products/orders/payments built with Express and Mongoose",
+        "Stripe Payment Intents flow: create, confirm, and handle failure states"
+      ]
+    },
+    {
+      "name": "Realtime Chat Site",
+      "description": "Express + Socket.IO app for 1-to-1 realtime messaging with online users list.",
+      "techStack": "Node.js, Express, Socket.IO, HTML, CSS, JavaScript",
+      "liveLink": "https://chatting-site-qzm4.onrender.com",
+      "codeLink": "https://github.com/uttamongithb/Chatting-Site",
+      "highlights": [
+        "Socket.IO-powered 1-to-1 messaging with rooms to isolate conversations",
+        "Login UI and online users list for quick pairing",
+        "Deployed to Render; Express serves static client and WebSocket endpoint"
+      ]
+    },
+    {
+      "name": "MERN Payroll Management Dashboard",
+      "description": "Role-based payroll and leave management with charts and secure auth.",
+      "techStack": "React (TypeScript), Node.js, Express, MongoDB, Tailwind, MUI, Recharts",
+      "liveLink": "https://payroll-dashboard-1-9an0.onrender.com",
+      "highlights": [
+        "Admin/Manager/Employee dashboards with protected routes",
+        "JWT authentication with refresh tokens and CORS policies",
+        "KPI visualizations using Recharts with responsive layouts"
+      ]
+    }
+  ],
+  "skills": [
+    { "name": "Frontend", "keywords": ["React", "TypeScript", "JavaScript", "React Router", "Vite", "Tailwind CSS", "HTML5", "CSS3"] },
+    { "name": "Backend", "keywords": ["Node.js", "Express.js", "MongoDB", "Mongoose", "REST APIs", "Socket.IO", "JWT", "Stripe"] },
+    { "name": "Tools", "keywords": ["Git", "GitHub", "Postman", "VS Code", "Vercel", "Render", "MongoDB Atlas"] }
+  ],
+  "education": [
+    {
+      "institution": "Kulbhaskar Ashram PG College, Prayagraj",
+      "area": "Bachelor of Computer Applications (BCA) — Aggregate: 70.40%",
+      "studyType": "BCA",
+      "startDate": "Aug 2022",
+      "endDate": "May 2025"
+    },
+    {
+      "institution": "Jawahar Navodaya Vidyalaya, Manikpur, Chitrakoot",
+      "area": "Senior Secondary (Class XII) — Aggregate: 72.80%",
+      "studyType": "Class XII",
+      "startDate": "Apr 2020",
+      "endDate": "Mar 2021"
+    }
+  ]
+}
