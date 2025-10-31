@@ -34,9 +34,7 @@ export default function Home() {
         </p>
         <div className="mt-6 flex gap-3">
           <Link to="/projects" className="px-4 py-2 rounded-md bg-accent text-white hover:brightness-110">View Projects</Link>
-          <Link to="/contact" className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">Contact</Link>
-          <Link to="/resume" className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">Resume</Link>
-          {/* Print view removed */}
+          {/* Contact and Resume buttons removed to avoid duplication with navbar */}
         </div>
       </section>
       </Reveal>

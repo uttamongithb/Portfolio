@@ -18,7 +18,7 @@ function Header() {
     <header className="sticky top-0 z-30 backdrop-blur-md bg-white/60 dark:bg-neutral-950/60 border-b border-neutral-200 dark:border-neutral-800">
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
         <Link to="/" className="font-semibold tracking-tight">
-          <span className="text-accent">U</span>ttam • Resume
+          <span className="text-accent">U</span>ttam
         </Link>
         <nav className="flex items-center gap-2">
           <Link to="/projects" className="text-sm px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
