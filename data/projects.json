@@ -158,5 +158,41 @@
       {"label": "Auth", "value": "JWT + Bcrypt"},
       {"label": "API Endpoints", "value": "15+"}
     ]
+  },
+  {
+    "slug": "expense-management-freelacer",
+    "title": "Smart Expense Management System",
+    "summary": "Full-stack expense management platform with multi-level approvals, OCR-based receipt capture, currency conversion, analytics dashboards, and enterprise RBAC.",
+    "description": "Developed a robust expense management system using React.js (TypeScript), NestJS, and Firebase. The platform supports multi-level approval workflows, OCR-based receipt uploads, real-time currency conversion, analytics dashboards, and enterprise-grade role-based access control (RBAC). Features include automated approval flows, receipt digitization, and comprehensive reporting for finance teams.",
+    "tags": ["React", "NestJS", "Firebase", "TypeScript", "RBAC", "OCR", "Dashboard"],
+    "year": 2025,
+    "role": "Full-Stack Developer",
+    "tools": ["React.js", "NestJS", "TypeScript", "Firebase", "OCR API", "Currency Conversion API"],
+    "links": {
+      "live": "https://expense-management-freelacer-web.vercel.app/dashboard"
+    },
+    "cover": "/images/Screenshot 2025-11-25 114634.png",
+    "gallery": [
+      { "src": "/images/Screenshot 2025-11-25 114634.png", "alt": "Smart Expense Management System dashboard" }
+    ],
+    "problem": "Enable organizations to efficiently manage, approve, and analyze employee expenses with automated workflows and digital receipt capture.",
+    "approach": [
+      "Designed a modular architecture with React.js frontend and NestJS backend, integrated via REST APIs",
+      "Implemented multi-level approval workflows and enterprise RBAC for secure access control",
+      "Integrated OCR for automated receipt digitization and real-time currency conversion APIs",
+      "Built analytics dashboards for spend analysis and reporting",
+      "Deployed using Firebase for authentication, storage, and hosting with Vercel for frontend"
+    ],
+    "outcomes": [
+      "Streamlined expense submission and approval process with automated workflows",
+      "Reduced manual entry with OCR-based receipt capture and digitization",
+      "Improved financial visibility with real-time analytics dashboards",
+      "Secure, scalable, and ready for enterprise deployment"
+    ],
+    "metrics": [
+      {"label": "Approvals", "value": "Multi-level"},
+      {"label": "Receipt Capture", "value": "OCR"},
+      {"label": "Hosting", "value": "Firebase/Vercel"}
+    ]
   }
 ]
