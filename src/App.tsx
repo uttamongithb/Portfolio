@@ -23,7 +23,7 @@ function Header() {
           <span>{firstName}</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
+          {['About', 'Skills', 'Projects'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
