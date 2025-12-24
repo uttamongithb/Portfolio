@@ -16,12 +16,12 @@ export default function Resume() {
   const education = hasEducation ? (resume.education as any[]) : []
   return (
     <Page>
-      <div className="mx-auto max-w-[800px] px-8 py-8 print-page">
+      <div className="mx-auto max-w-[800px] px-8 py-8 pt-24 print-page">
         {/* Local print styles */}
         <style>{`
           @media print {
             @page { size: A4; margin: 8mm; }
-            html, body { margin: 0 !important; }
+            html, body { margin: 0 !important; background: #ffffff !important; }
             header.sticky, .no-print { display: none !important; }
             .aurora-bg { display: none !important; }
             .print-page {
@@ -36,7 +36,7 @@ export default function Resume() {
             /* Slightly tighten font sizes for print to improve single-page fit */
             .print-page .text-sm, .print-page p, .print-page li { font-size: 10.5pt !important; line-height: 1.35 !important; }
             .print-page h1 { font-size: 18pt !important; }
-            .print-page .section-title { font-size: 12pt !important; }
+            .print-page .resume-section-title { font-size: 12pt !important; }
             /* Ensure section dividers are visible in print */
             .print-page hr { border: 0; border-top: 1px solid #000 !important; opacity: 1 !important; margin: 8px 0 !important; }
             * { color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -87,7 +87,7 @@ export default function Resume() {
 
         {hasSummary && (
           <section className="mb-3">
-            <h2 className="section-title">Summary</h2>
+            <h2 className="resume-section-title">Summary</h2>
             <p className="text-sm">{resume.basics?.summary}</p>
           </section>
         )}
@@ -99,7 +99,7 @@ export default function Resume() {
         {/* ATS-friendly: Skills early for keyword scanning */}
         {hasSkills && (
           <section className="mb-3">
-            <h2 className="section-title">Skills</h2>
+            <h2 className="resume-section-title">Skills</h2>
             <div className="space-y-1">
               {skills.map((s: any, i: number) => (
                 <p key={i} className="text-sm"><span className="font-medium">{s.name}:</span> {(s.keywords || []).join(', ')}</p>
@@ -115,7 +115,7 @@ export default function Resume() {
         {/* Experience before Projects for professional ATS order */}
         {hasExperience && (
           <section className="mb-3">
-            <h2 className="section-title">Experience</h2>
+            <h2 className="resume-section-title">Experience</h2>
             <div className="space-y-2">
               {work.map((w: any, i: number) => (
                 <div key={i}>
@@ -144,9 +144,9 @@ export default function Resume() {
         {/* Projects follow Experience; keep concise */}
         {hasProjects && (
           <section className="mb-3">
-            <h2 className="section-title">Projects</h2>
+            <h2 className="resume-section-title">Projects</h2>
             <div className="space-y-2">
-              {projects.slice(0, 2).map((p: any, i: number) => (
+              {projects.slice(0, 4).map((p: any, i: number) => (
                 <div key={i}>
                   <p className="font-medium">{p.name}</p>
                   {p.techStack && <p className="text-sm text-neutral-600">Tech Stack: {p.techStack}</p>}
@@ -179,7 +179,7 @@ export default function Resume() {
         {/* Education last for professional ATS order */}
         {hasEducation && (
           <section className="mb-3">
-            <h2 className="section-title">Education</h2>
+            <h2 className="resume-section-title">Education</h2>
             <div className="space-y-1">
               {education.map((e: any, i: number) => (
                 <div key={i}>

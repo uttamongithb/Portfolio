@@ -3,6 +3,7 @@ import { Route, Routes, Link, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Sun, Moon } from 'lucide-react'
 import { AnimatePresence } from 'framer-motion'
+import { loadResume } from './shared/data'
 import Home from './routes/Home'
 import Projects from './routes/Projects'
 import ProjectDetail from './routes/ProjectDetail'
@@ -14,31 +15,51 @@ import Aurora from './components/Aurora'
 function Header() {
   const { theme, setTheme } = React.useContext(ThemeContext)
   const location = useLocation()
+  const resume = loadResume()
+  const [firstName, ...rest] = (resume.basics?.name || 'Uttam').split(' ')
+
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-md bg-white/60 dark:bg-neutral-950/60 border-b border-neutral-200 dark:border-neutral-800">
-      <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="font-semibold tracking-tight">
-          <span className="text-accent">U</span>ttam
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-white/5 print:hidden">
+      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-tight text-white hover:text-primary transition-colors group">
+          <img src="/images/profile.png" alt="Profile" className="w-10 h-10 rounded-full object-cover border-2 border-white/10 group-hover:border-primary/50 transition-colors" />
+          <span>{firstName}</span>
         </Link>
-        <nav className="flex items-center gap-2">
-          <Link to="/projects" className="text-sm px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
-            Projects
-          </Link>
-          <Link to="/resume" className="text-sm px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+        <nav className="hidden md:flex items-center gap-8">
+          {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-sm font-medium text-neutral-400 hover:text-white transition-colors relative group py-2"
+            >
+              {item}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+          <Link
+            to="/resume"
+            className="px-4 py-2 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-white transition-all hover:border-primary/50"
+          >
             Resume
           </Link>
-          <Link to="/contact" className="text-sm px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
-            Contact
+        </nav>
+
+        {/* Mobile Toggle & Actions */}
+        <div className="flex items-center gap-4 md:hidden">
+          <Link
+            to="/resume"
+            className="px-3 py-1.5 rounded bg-primary text-background text-xs font-bold"
+          >
+            Resume
           </Link>
-          {/* Print view removed */}
           <button
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            className="p-2 rounded-md border border-white/10 hover:bg-white/5 text-neutral-400"
           >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-        </nav>
+        </div>
       </div>
     </header>
   )
@@ -52,7 +73,7 @@ export default function App() {
         <title>Resume | Portfolio</title>
         <meta name="description" content="Modern resume and portfolio" />
       </Helmet>
-  <Aurora />
+      {/* <Aurora /> Removed to fix background mismatch */}
       <Header />
       <main>
         <AnimatePresence mode="wait">

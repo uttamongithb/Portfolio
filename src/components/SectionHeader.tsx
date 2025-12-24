@@ -4,16 +4,15 @@ import Reveal from './Reveal'
 export default function SectionHeader({ title, subtitle, className = '' }: { title: string; subtitle?: string; className?: string }) {
   return (
     <Reveal>
-      <div className={`mb-4 ${className}`}>
-        <h2 className="text-xl font-semibold tracking-tight">
-          <span className="bg-gradient-to-r from-fuchsia-500 to-violet-500 bg-clip-text text-transparent">
-            {title}
-          </span>
+      <div className={`mb-6 ${className}`}>
+        <h2 className="text-2xl font-bold tracking-tight text-white relative inline-block">
+          {title}
+          <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-accent rounded-full"></span>
         </h2>
         {subtitle && (
-          <p className="text-sm text-neutral-500 mt-1">{subtitle}</p>
+          <p className="text-sm text-neutral-400 mt-2 font-mono">{subtitle}</p>
         )}
-  <div className="mt-2 h-[2px] w-16 bg-gradient-to-r from-fuchsia-500/70 to-transparent rounded-full" />
       </div>
     </Reveal>
-  )}
+  )
+}

@@ -4,29 +4,36 @@ module.exports = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        mono: ['Fira Code', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
       colors: {
+        background: '#03050C', // Deep Midnight Blue
+        surface: '#0A101F', // Slightly lighter for cards
+        primary: '#CBACF9', // Lavender Accent
+        secondary: '#9CA3AF', // Muted Gray
         accent: {
           DEFAULT: '#a855f7',
-          dark: '#7c3aed'
+          dark: '#7c3aed',
+          glow: '#E0CCFA',
         }
       },
-      keyframes: {
-        blob: {
-          '0%, 100%': { transform: 'translate(0px,0px) scale(1)' },
-          '33%': { transform: 'translate(30px,-20px) scale(1.05)' },
-          '66%': { transform: 'translate(-20px,20px) scale(0.98)' }
-        },
-        float: {
-          '0%,100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' }
-        }
-      },
-      animation: {
-        blob: 'blob 18s ease-in-out infinite',
-        'float-slow': 'float 6s ease-in-out infinite'
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       boxShadow: {
-        'soft': '0 10px 30px -12px rgba(2,132,199,0.25)'
+        'glow': '0 0 20px rgba(203, 172, 249, 0.3)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+      },
+      animation: {
+        'fade-up': 'fadeUp 0.8s ease-out forwards',
+      },
+      keyframes: {
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        }
       }
     },
   },

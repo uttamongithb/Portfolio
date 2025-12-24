@@ -2,16 +2,28 @@
   "basics": {
     "name": "Uttam Kumar",
     "label": "Full-Stack Web Developer",
-    "email": "uttamonemail@gmail.com",
+    "email": "uttam25@navgurukul.org",
     "phone": "+91 9696391458",
-    "location": "Prayagraj, Uttar Pradesh, India",
+    "location": "Navgurukul Campus, Dharamshala, Himachal Pradesh",
     "url": "https://linkedin.com/in/uttam-kb",
-  "summary": "Full‑stack developer (MERN) with hands‑on experience building and deploying production‑style apps. Shipped an end‑to‑end e‑commerce platform with Stripe payments, JWT RBAC, REST APIs, and realtime chat. Strengths: React, Node.js, Express, MongoDB, TypeScript, and cloud deployments on Vercel/Render with MongoDB Atlas.",
+    "summary": "Full‑stack developer (MERN) with hands‑on experience building and deploying production‑style apps. Shipped an end‑to‑end e‑commerce platform with Stripe payments, JWT RBAC, REST APIs, and realtime chat. Strengths: React, Node.js, Express, MongoDB, TypeScript, and cloud deployments on Vercel/Render with MongoDB Atlas.",
     "profiles": [
-      { "network": "LinkedIn", "url": "https://linkedin.com/in/uttam-kb" },
-      { "network": "GitHub", "url": "https://github.com/uttamongithb/" },
-      { "network": "Instagram", "url": "https://www.instagram.com/uttamoninsta/" },
-      { "network": "X", "url": "https://x.com/uttamonx" }
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/uttam-kb"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/uttamongithb/"
+      },
+      {
+        "network": "Instagram",
+        "url": "https://www.instagram.com/uttamoninsta/"
+      },
+      {
+        "network": "X",
+        "url": "https://x.com/uttamonx"
+      }
     ]
   },
   "work": [
@@ -30,44 +42,73 @@
   ],
   "projects": [
     {
-      "name": "ShopHub E-Commerce Store (Full-Stack MERN)",
-      "description": "Production-ready MERN e-commerce with payments, auth, admin, reviews, and orders.",
-      "techStack": "React, Node.js, Express, MongoDB, Stripe, JWT, Vite",
-      "liveLink": "https://freelance-e-commerce-frontend.vercel.app",
-      "highlights": [
-        "Cart, checkout, order history, and an admin dashboard for product and order management",
-        "REST API for auth/products/orders/payments built with Express and Mongoose",
-        "Stripe Payment Intents flow: create, confirm, and handle failure states"
-      ]
-    },
-    {
-      "name": "Realtime Chat Site",
-      "description": "Express + Socket.IO app for 1-to-1 realtime messaging with online users list.",
-      "techStack": "Node.js, Express, Socket.IO, HTML, CSS, JavaScript",
-      "liveLink": "https://chatting-site-qzm4.onrender.com",
-      "codeLink": "https://github.com/uttamongithb/Chatting-Site",
-      "highlights": [
-        "Socket.IO-powered 1-to-1 messaging with rooms to isolate conversations",
-        "Login UI and online users list for quick pairing",
-        "Deployed to Render; Express serves static client and WebSocket endpoint"
-      ]
+      "name": "Smart Expense Management System",
+      "description": "Comprehensive expense platform featuring multi-level approvals, OCR receipt scanning, and real-time analytics for efficient corporate spend tracking.",
+      "techStack": "React, NestJS, Firebase, TypeScript, OCR API",
+      "liveLink": "https://expense-management-freelacer-web.vercel.app/dashboard",
+      "highlights": []
     },
     {
       "name": "MERN Payroll Management Dashboard",
-      "description": "Role-based payroll and leave management with charts and secure auth.",
+      "description": "Role-based payroll system with distinct Admin/Employee dashboards, featuring secure JWT authentication and interactive KPI visualizations for data-driven management.",
       "techStack": "React (TypeScript), Node.js, Express, MongoDB, Tailwind, MUI, Recharts",
-      "liveLink": "https://payroll-dashboard-1-9an0.onrender.com",
-      "highlights": [
-        "Admin/Manager/Employee dashboards with protected routes",
-        "JWT authentication with refresh tokens and CORS policies",
-        "KPI visualizations using Recharts with responsive layouts"
-      ]
+      "liveLink": "https://payroll-dashboard-navy.vercel.app",
+      "highlights": []
+    },
+    {
+      "name": "Realtime Chat Site",
+      "description": "Real-time messaging platform using Socket.IO for 1-to-1 chats with isolated rooms, featuring instant user pairing and live online status indicators.",
+      "techStack": "Node.js, Express, Socket.IO, HTML, CSS, JavaScript",
+      "liveLink": "https://chatting-site-qzm4.onrender.com",
+      "highlights": []
+    },
+    {
+      "name": "IdeaShare Platform",
+      "description": "Interactive idea sharing community with real-time updates and smooth GSAP animations. Features user authentication, idea posting, and dynamic feeds.",
+      "techStack": "React, Node.js, Express, MongoDB, Socket.IO, GSAP",
+      "liveLink": "https://ideashare-eta.vercel.app/",
+      "highlights": []
     }
   ],
   "skills": [
-    { "name": "Frontend", "keywords": ["React", "TypeScript", "JavaScript", "React Router", "Vite", "Tailwind CSS", "HTML5", "CSS3"] },
-    { "name": "Backend", "keywords": ["Node.js", "Express.js", "MongoDB", "Mongoose", "REST APIs", "Socket.IO", "JWT", "Stripe"] },
-    { "name": "Tools", "keywords": ["Git", "GitHub", "Postman", "VS Code", "Vercel", "Render", "MongoDB Atlas"] }
+    {
+      "name": "Frontend",
+      "keywords": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "React Router",
+        "Vite",
+        "Tailwind CSS",
+        "HTML5",
+        "CSS3"
+      ]
+    },
+    {
+      "name": "Backend",
+      "keywords": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "REST APIs",
+        "Socket.IO",
+        "JWT",
+        "Stripe"
+      ]
+    },
+    {
+      "name": "Tools",
+      "keywords": [
+        "Git",
+        "GitHub",
+        "Postman",
+        "VS Code",
+        "Vercel",
+        "Render",
+        "MongoDB Atlas"
+      ]
+    }
   ],
   "education": [
     {

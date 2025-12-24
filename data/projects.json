@@ -4,20 +4,44 @@
     "title": "ShopNow E‑commerce UI",
     "summary": "React + Tailwind storefront with search, product detail, cart, and order flows.",
     "description": "Built a responsive e‑commerce front end using React 19, React Router 7, Tailwind CSS v4, and Vite 6. Features include client‑side product search, product detail pages, a cart with quantity controls, and an order checkout that collects delivery details. Navbar shows live cart count and login/register dropdown backed by localStorage.",
-    "tags": ["React", "Tailwind", "Vite", "React Router", "E‑commerce"],
+    "tags": [
+      "React",
+      "Tailwind",
+      "Vite",
+      "React Router",
+      "E‑commerce"
+    ],
     "year": 2025,
     "role": "Frontend Developer",
-    "tools": ["React 19", "Vite 6", "React Router 7", "Tailwind CSS v4", "Font Awesome"],
+    "tools": [
+      "React 19",
+      "Vite 6",
+      "React Router 7",
+      "Tailwind CSS v4",
+      "Font Awesome"
+    ],
     "links": {
       "live": "https://ecommerce-react-xi-smoky.vercel.app/home",
       "repo": "https://github.com/uttamongithb/mern-ecommerce"
     },
     "cover": "/images/Screenshot 2025-10-30 113415.png",
     "gallery": [
-      { "src": "/images/Screenshot 2025-10-30 113415.png", "alt": "ShopNow home grid with products, search, cart, and user menu" },
-      { "src": "/images/Screenshot 2025-10-30 122206.png", "alt": "ShopNow screenshot 122206" },
-      { "src": "/images/Screenshot 2025-10-30 122220.png", "alt": "ShopNow screenshot 122220" },
-      { "src": "/images/Screenshot 2025-10-30 122330.png", "alt": "ShopNow screenshot 122330" }
+      {
+        "src": "/images/Screenshot 2025-10-30 113415.png",
+        "alt": "ShopNow home grid with products, search, cart, and user menu"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 122206.png",
+        "alt": "ShopNow screenshot 122206"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 122220.png",
+        "alt": "ShopNow screenshot 122220"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 122330.png",
+        "alt": "ShopNow screenshot 122330"
+      }
     ],
     "problem": "Provide a fast, modern shopping UI with clear flows for discovery, cart management, and placing orders—while keeping the stack simple (no backend).",
     "approach": [
@@ -32,9 +56,18 @@
       "Ready to swap the local JSON catalog for an API or headless CMS"
     ],
     "metrics": [
-      {"label": "Routes", "value": "8"},
-      {"label": "Cart", "value": "Add/Remove/Qty"},
-      {"label": "Hosting", "value": "Vercel"}
+      {
+        "label": "Routes",
+        "value": "8"
+      },
+      {
+        "label": "Cart",
+        "value": "Add/Remove/Qty"
+      },
+      {
+        "label": "Hosting",
+        "value": "Vercel"
+      }
     ]
   },
   {
@@ -42,18 +75,32 @@
     "title": "Realtime Chat Site",
     "summary": "Express + Socket.IO chat with login/signup and 1‑to‑1 realtime messaging.",
     "description": "A lightweight Node.js chat application using Express 5 and Socket.IO 4. Users log in and can message any online user from the live user list (pick anyone—even at random). Messages are delivered instantly over WebSockets. Static pages are served by Express. Deployed to Render.",
-    "tags": ["Node.js", "Express", "Socket.IO", "Realtime"],
+    "tags": [
+      "Node.js",
+      "Express",
+      "Socket.IO",
+      "Realtime"
+    ],
     "year": 2025,
     "role": "Full‑stack Developer",
-    "tools": ["Express 5", "Socket.IO 4"],
+    "tools": [
+      "Express 5",
+      "Socket.IO 4"
+    ],
     "links": {
       "live": "https://chatting-site-qzm4.onrender.com/",
       "repo": "https://github.com/uttamongithb/Chatting-Site"
     },
     "cover": "/images/Screenshot 2025-10-30 122950.png",
     "gallery": [
-      { "src": "/images/Screenshot 2025-10-30 122950.png", "alt": "Chat Site login screen" },
-      { "src": "/images/Screenshot 2025-10-30 123211.png", "alt": "Chat conversation view with online users list" }
+      {
+        "src": "/images/Screenshot 2025-10-30 122950.png",
+        "alt": "Chat Site login screen"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 123211.png",
+        "alt": "Chat conversation view with online users list"
+      }
     ],
     "problem": "Build a simple, reliable way for users to chat in real time from the browser.",
     "approach": [
@@ -68,9 +115,18 @@
       "Clear foundation for adding features like rooms, typing indicators, and message persistence"
     ],
     "metrics": [
-      {"label": "Dependencies", "value": "2"},
-      {"label": "Transport", "value": "WebSocket"},
-      {"label": "Hosting", "value": "Render"}
+      {
+        "label": "Dependencies",
+        "value": "2"
+      },
+      {
+        "label": "Transport",
+        "value": "WebSocket"
+      },
+      {
+        "label": "Hosting",
+        "value": "Render"
+      }
     ]
   },
   {
@@ -78,21 +134,59 @@
     "title": "MERN Payroll Management System",
     "summary": "Full‑stack MERN dashboard with role‑based access, JWT auth, leave approvals, and payroll insights.",
     "description": "Built a complete payroll management system using React 19 (Vite), TypeScript, Tailwind CSS, MUI, and Node.js + Express + MongoDB. Features role-based dashboards (Admin, Manager, Employee), JWT authentication with refresh tokens, leave request workflows, compliance tracking, and interactive charts with Recharts. Seeded demo users for testing. Deployed to Render with separate client and API services.",
-    "tags": ["React", "TypeScript", "Node.js", "MongoDB", "Express", "MERN"],
+    "tags": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "MERN"
+    ],
     "year": 2025,
     "role": "Full‑Stack Developer",
-    "tools": ["React 19", "Vite", "TypeScript", "Tailwind CSS", "MUI", "Express", "MongoDB", "Mongoose", "JWT", "Recharts", "React Query", "Zod"],
+    "tools": [
+      "React 19",
+      "Vite",
+      "TypeScript",
+      "Tailwind CSS",
+      "MUI",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Recharts",
+      "React Query",
+      "Zod"
+    ],
     "links": {
-      "live": "https://payroll-dashboard-1-9an0.onrender.com/"
+      "live": "https://payroll-dashboard-navy.vercel.app"
     },
     "cover": "/images/Screenshot 2025-10-30 163749.png",
     "gallery": [
-      { "src": "/images/Screenshot 2025-10-30 163749.png", "alt": "Payroll dashboard login screen" },
-      { "src": "/images/Screenshot 2025-10-30 163810.png", "alt": "Admin dashboard with KPIs and charts" },
-      { "src": "/images/Screenshot 2025-10-30 163928.png", "alt": "Leave approval workflow" },
-      { "src": "/images/Screenshot 2025-10-30 164014.png", "alt": "Employee payroll view" },
-      { "src": "/images/Screenshot 2025-10-30 164048.png", "alt": "Compliance tracking" },
-      { "src": "/images/Screenshot 2025-10-30 164059.png", "alt": "Payroll reports and charts" }
+      {
+        "src": "/images/Screenshot 2025-10-30 163749.png",
+        "alt": "Payroll dashboard login screen"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 163810.png",
+        "alt": "Admin dashboard with KPIs and charts"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 163928.png",
+        "alt": "Leave approval workflow"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 164014.png",
+        "alt": "Employee payroll view"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 164048.png",
+        "alt": "Compliance tracking"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 164059.png",
+        "alt": "Payroll reports and charts"
+      }
     ],
     "problem": "Streamline payroll management and leave approvals across multiple user roles without manual spreadsheets and email threads.",
     "approach": [
@@ -110,9 +204,18 @@
       "Deployed on Render with persistent MongoDB Atlas storage"
     ],
     "metrics": [
-      {"label": "Roles", "value": "3 (Admin/Mgr/Emp)"},
-      {"label": "Auth", "value": "JWT + Refresh"},
-      {"label": "Stack", "value": "MERN + TS"}
+      {
+        "label": "Roles",
+        "value": "3 (Admin/Mgr/Emp)"
+      },
+      {
+        "label": "Auth",
+        "value": "JWT + Refresh"
+      },
+      {
+        "label": "Stack",
+        "value": "MERN + TS"
+      }
     ]
   },
   {
@@ -120,19 +223,51 @@
     "title": "ShopHub E‑commerce Store",
     "summary": "Full‑stack MERN e‑commerce with Stripe payments, admin panel, reviews, and JWT auth.",
     "description": "Developed a production‑ready e‑commerce platform using the MERN stack (MongoDB Atlas, Express, React 18, Node.js). Features Stripe payment integration, user authentication with JWT, role‑based admin panel for product CRUD, customer reviews and ratings, responsive design, and order management. Deployed frontend to Vercel and backend to Render with comprehensive documentation.",
-    "tags": ["React", "Node.js", "MongoDB", "Express", "Stripe", "E‑commerce", "MERN"],
+    "tags": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "Stripe",
+      "E‑commerce",
+      "MERN"
+    ],
     "year": 2025,
     "role": "Full‑Stack Developer",
-    "tools": ["React 18", "Vite 5", "Express", "MongoDB", "Mongoose", "JWT", "Stripe SDK", "Axios", "React Router v6", "Bcrypt", "Helmet"],
+    "tools": [
+      "React 18",
+      "Vite 5",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Stripe SDK",
+      "Axios",
+      "React Router v6",
+      "Bcrypt",
+      "Helmet"
+    ],
     "links": {
       "live": "https://freelance-e-commerce-frontend.vercel.app/"
     },
     "cover": "/images/Screenshot 2025-10-30 170050.png",
     "gallery": [
-      { "src": "/images/Screenshot 2025-10-30 170050.png", "alt": "ShopHub homepage with product grid and search" },
-      { "src": "/images/Screenshot 2025-10-30 170114.png", "alt": "Product detail page with reviews and ratings" },
-      { "src": "/images/Screenshot 2025-10-30 170336.png", "alt": "Shopping cart and checkout flow" },
-      { "src": "/images/Screenshot 2025-10-30 170347.png", "alt": "Admin panel for product management" }
+      {
+        "src": "/images/Screenshot 2025-10-30 170050.png",
+        "alt": "ShopHub homepage with product grid and search"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 170114.png",
+        "alt": "Product detail page with reviews and ratings"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 170336.png",
+        "alt": "Shopping cart and checkout flow"
+      },
+      {
+        "src": "/images/Screenshot 2025-10-30 170347.png",
+        "alt": "Admin panel for product management"
+      }
     ],
     "problem": "Build a complete e‑commerce solution with secure payments, user authentication, admin capabilities, and scalable architecture suitable for real‑world deployment.",
     "approach": [
@@ -153,10 +288,22 @@
       "Successfully deployed and live with test payments working via Stripe test cards"
     ],
     "metrics": [
-      {"label": "Stack", "value": "MERN"},
-      {"label": "Payment", "value": "Stripe API"},
-      {"label": "Auth", "value": "JWT + Bcrypt"},
-      {"label": "API Endpoints", "value": "15+"}
+      {
+        "label": "Stack",
+        "value": "MERN"
+      },
+      {
+        "label": "Payment",
+        "value": "Stripe API"
+      },
+      {
+        "label": "Auth",
+        "value": "JWT + Bcrypt"
+      },
+      {
+        "label": "API Endpoints",
+        "value": "15+"
+      }
     ]
   },
   {
@@ -164,16 +311,34 @@
     "title": "Smart Expense Management System",
     "summary": "Full-stack expense management platform with multi-level approvals, OCR-based receipt capture, currency conversion, analytics dashboards, and enterprise RBAC.",
     "description": "Developed a robust expense management system using React.js (TypeScript), NestJS, and Firebase. The platform supports multi-level approval workflows, OCR-based receipt uploads, real-time currency conversion, analytics dashboards, and enterprise-grade role-based access control (RBAC). Features include automated approval flows, receipt digitization, and comprehensive reporting for finance teams.",
-    "tags": ["React", "NestJS", "Firebase", "TypeScript", "RBAC", "OCR", "Dashboard"],
+    "tags": [
+      "React",
+      "NestJS",
+      "Firebase",
+      "TypeScript",
+      "RBAC",
+      "OCR",
+      "Dashboard"
+    ],
     "year": 2025,
     "role": "Full-Stack Developer",
-    "tools": ["React.js", "NestJS", "TypeScript", "Firebase", "OCR API", "Currency Conversion API"],
+    "tools": [
+      "React.js",
+      "NestJS",
+      "TypeScript",
+      "Firebase",
+      "OCR API",
+      "Currency Conversion API"
+    ],
     "links": {
       "live": "https://expense-management-freelacer-web.vercel.app/dashboard"
     },
     "cover": "/images/Screenshot 2025-11-25 114634.png",
     "gallery": [
-      { "src": "/images/Screenshot 2025-11-25 114634.png", "alt": "Smart Expense Management System dashboard" }
+      {
+        "src": "/images/Screenshot 2025-11-25 114634.png",
+        "alt": "Smart Expense Management System dashboard"
+      }
     ],
     "problem": "Enable organizations to efficiently manage, approve, and analyze employee expenses with automated workflows and digital receipt capture.",
     "approach": [
@@ -190,9 +355,75 @@
       "Secure, scalable, and ready for enterprise deployment"
     ],
     "metrics": [
-      {"label": "Approvals", "value": "Multi-level"},
-      {"label": "Receipt Capture", "value": "OCR"},
-      {"label": "Hosting", "value": "Firebase/Vercel"}
+      {
+        "label": "Approvals",
+        "value": "Multi-level"
+      },
+      {
+        "label": "Receipt Capture",
+        "value": "OCR"
+      },
+      {
+        "label": "Hosting",
+        "value": "Firebase/Vercel"
+      }
+    ]
+  },
+  {
+    "slug": "ideashare-platform",
+    "title": "IdeaShare Platform",
+    "summary": "MERN stack platform for sharing ideas with GSAP animations and realtime updates.",
+    "description": "A dynamic platform for creative minds to share and discuss ideas. Built with the MERN stack (MongoDB, Express, React, Node.js) and enhanced with Socket.IO for real-time interactions. The frontend features smooth GSAP animations for an engaging user experience, while the backend handles secure authentication and file uploads via Multer.",
+    "tags": [
+      "React",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "GSAP"
+    ],
+    "year": 2025,
+    "role": "Full-Stack Developer",
+    "tools": [
+      "React 18",
+      "Vite",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "GSAP",
+      "Multer"
+    ],
+    "links": {
+      "live": "https://ideashare-eta.vercel.app/",
+      "repo": "https://github.com/uttamongithb/ideashare"
+    },
+    "cover": "/images/ideashare.png",
+    "gallery": [],
+    "problem": "Create an engaging space for users to share fleeting ideas with immediate feedback and visual flair.",
+    "approach": [
+      "Developed a responsive UI with React and Vite, utilizing GSAP for high-performance animations",
+      "Implemented a robust REST API with Express and Mongoose for idea CRUD operations",
+      "Integrated Socket.IO to push real-time updates to clients when new content is added",
+      "Secured user routes with JWT authentication and bcrypt password hashing"
+    ],
+    "outcomes": [
+      "Smooth, animated user interface that delights users",
+      "Real-time content delivery keeping the feed fresh without refreshing",
+      "Secure and scalable backend architecture on Render/Vercel"
+    ],
+    "metrics": [
+      {
+        "label": "Stack",
+        "value": "MERN"
+      },
+      {
+        "label": "Animations",
+        "value": "GSAP"
+      },
+      {
+        "label": "Realtime",
+        "value": "Socket.IO"
+      }
     ]
   }
 ]

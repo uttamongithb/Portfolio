@@ -18,6 +18,12 @@ export default function Print() {
   return (
     <Page>
     <div className="print-page">
+      <style>{`
+        @media print {
+          a { color: #000 !important; text-decoration: underline !important; -webkit-text-decoration-color: #000 !important; -webkit-print-color-adjust: exact; }
+          a[href]:after { content: '' !important; }
+        }
+      `}</style>
       <div className="mx-auto max-w-[800px] px-8 py-8">
         {/* Controls shown only on screen, hidden in print */}
         <div className="no-print mb-4 flex items-center gap-2">
@@ -86,7 +92,7 @@ export default function Print() {
                     <p className="text-sm text-neutral-600">Tech Stack: {p.techStack}</p>
                   )}
                   {p.description && (
-                    <p className="text-sm mt-1">{p.description}</p>
+                    <p className="text-sm mt-1 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2 as any, WebkitBoxOrient: 'vertical' as any }}>{p.description}</p>
                   )}
                   {Array.isArray(p.highlights) && p.highlights.length > 0 && (
                     <ul className="list-disc pl-5 text-sm mt-1">
@@ -96,9 +102,19 @@ export default function Print() {
                     </ul>
                   )}
                   <p className="text-sm mt-1">
-                    {p.liveLink && <><span className="font-medium">Live:</span> {p.liveLink}</>}
+                    {p.liveLink && (
+                      <>
+                        <span className="font-medium">Live:</span>{' '}
+                        <a href={p.liveLink} target="_blank" rel="noopener noreferrer" className="text-accent underline">{p.liveLink}</a>
+                      </>
+                    )}
                     {p.liveLink && p.codeLink && ' • '}
-                    {p.codeLink && <><span className="font-medium">Code:</span> {p.codeLink}</>}
+                    {p.codeLink && (
+                      <>
+                        <span className="font-medium">Code:</span>{' '}
+                        <a href={p.codeLink} target="_blank" rel="noopener noreferrer" className="text-accent underline">{p.codeLink}</a>
+                      </>
+                    )}
                   </p>
                 </div>
               ))}
