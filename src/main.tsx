@@ -7,26 +7,21 @@ import './styles/globals.css'
 // Print stylesheet removed
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = React.useState<string>(() => {
-    if (typeof window === 'undefined') return 'light'
-    return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-  })
+  const [theme] = React.useState<string>('dark')
 
   React.useEffect(() => {
-    const root = document.documentElement
-    if (theme === 'dark') root.classList.add('dark')
-    else root.classList.remove('dark')
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
+  }, [])
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme: () => { } }}>
       {children}
     </ThemeContext.Provider>
   )
 }
 
-export const ThemeContext = React.createContext<{ theme: string; setTheme: (t: string) => void }>({ theme: 'light', setTheme: () => {} })
+export const ThemeContext = React.createContext<{ theme: string; setTheme: (t: string) => void }>({ theme: 'dark', setTheme: () => { } })
 
 const rootEl = document.getElementById('root')!
 createRoot(rootEl).render(
