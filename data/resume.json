@@ -56,13 +56,6 @@
       "highlights": []
     },
     {
-      "name": "Realtime Chat Site",
-      "description": "Real-time messaging platform using Socket.IO for 1-to-1 chats with isolated rooms, featuring instant user pairing and live online status indicators.",
-      "techStack": "Node.js, Express, Socket.IO, HTML, CSS, JavaScript",
-      "liveLink": "https://chatting-site-qzm4.onrender.com",
-      "highlights": []
-    },
-    {
       "name": "IdeaShare Platform",
       "description": "Interactive idea sharing community with real-time updates and smooth GSAP animations. Features user authentication, idea posting, and dynamic feeds.",
       "techStack": "React, Node.js, Express, MongoDB, Socket.IO, GSAP",
