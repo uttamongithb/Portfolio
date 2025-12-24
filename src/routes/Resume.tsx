@@ -119,9 +119,8 @@ export default function Resume() {
             <div className="space-y-2">
               {work.map((w: any, i: number) => (
                 <div key={i}>
-                  <div className="flex items-baseline justify-between">
+                  <div className="mb-1">
                     <p className="font-medium">{w.position} • {w.name}</p>
-                    <p className="text-sm text-neutral-600">{w.startDate} - {w.endDate || 'Present'}</p>
                   </div>
                   {w.summary && <p className="text-sm mt-1">{w.summary}</p>}
                   {Array.isArray(w.highlights) && w.highlights.length > 0 && (
