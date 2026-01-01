@@ -67,13 +67,11 @@
     {
       "name": "Frontend",
       "keywords": [
-        "React",
-        "JavaScript",
-        "React Router",
-        "Vite",
-        "Tailwind CSS",
         "HTML5",
-        "CSS3"
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Tailwind CSS"
       ]
     },
     {
@@ -81,12 +79,7 @@
       "keywords": [
         "Node.js",
         "Express.js",
-        "MongoDB",
-        "Mongoose",
-        "REST APIs",
-        "Socket.IO",
-        "JWT",
-        "Stripe"
+        "MongoDB"
       ]
     },
     {

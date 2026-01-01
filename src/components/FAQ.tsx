@@ -19,7 +19,7 @@ const faqs = [
 
 export default function FAQ() {
     return (
-        <section className="py-24 border-b border-white/5 max-w-3xl mx-auto">
+        <section className="py-16 border-b border-white/5 max-w-3xl mx-auto">
             <h2 className="section-title">Frequently Asked Questions</h2>
             <div className="space-y-4">
                 {faqs.map((item, i) => (

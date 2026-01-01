@@ -8,7 +8,7 @@ export default function Hero() {
     const resume = loadResume()
 
     return (
-        <section id="about" className="min-h-screen flex items-center pt-20">
+        <section id="about" className="min-h-[70vh] flex items-center pt-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
 
                 {/* Left Column: Text */}
@@ -31,12 +31,13 @@ export default function Hero() {
                         >
                             Check out my work
                         </a>
-                        <Link
-                            to="/resume"
+                        <a
+                            href="/Resume.pdf"
+                            download
                             className="px-8 py-4 rounded border border-white/20 hover:border-primary text-white font-medium transition-all hover:bg-white/5"
                         >
-                            View Resume
-                        </Link>
+                            Download Resume
+                        </a>
                     </div>
 
                     <div className="flex items-center gap-6 pt-4 text-neutral-400">

@@ -11,7 +11,7 @@ const facts = [
 
 export default function QuickFacts() {
     return (
-        <section className="py-20 border-b border-white/5">
+        <section className="py-12 border-b border-white/5">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {facts.map((fact, i) => (
                     <div

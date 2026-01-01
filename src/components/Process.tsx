@@ -22,7 +22,7 @@ const steps = [
 
 export default function Process() {
     return (
-        <section id="process" className="py-24">
+        <section id="process" className="py-16">
             <h2 className="section-title">My Approach</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

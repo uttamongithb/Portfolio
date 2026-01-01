@@ -3,7 +3,6 @@ import Page from '../components/Page'
 import Container from '../components/Container'
 import Hero from '../components/Hero'
 import QuickFacts from '../components/QuickFacts'
-import Skills from '../components/Skills'
 import Process from '../components/Process'
 import FeaturedProjectsReplica from '../components/FeaturedProjectsReplica'
 import FAQ from '../components/FAQ'
@@ -15,7 +14,6 @@ export default function Home() {
             <Container className="py-0">
                 <Hero />
                 <QuickFacts />
-                <Skills />
                 <Process />
                 <FeaturedProjectsReplica />
                 <FAQ />

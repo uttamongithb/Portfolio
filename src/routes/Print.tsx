@@ -27,7 +27,7 @@ export default function Print() {
       <div className="mx-auto max-w-[800px] px-8 py-8">
         {/* Controls shown only on screen, hidden in print */}
         <div className="no-print mb-4 flex items-center gap-2">
-          <button onClick={() => window.print()} className="px-3 py-1.5 rounded-md bg-accent text-white">Download PDF</button>
+          <a href="/Resume.pdf" download className="px-3 py-1.5 rounded-md bg-accent text-white">Download PDF</a>
           <Link to="/" className="px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700">Back</Link>
         </div>
         <header className="mb-4">
@@ -122,16 +122,7 @@ export default function Print() {
           </section>
         ) : null}
 
-              {resume.skills?.length ? (
-          <section className="mb-3">
-            <h2 className="section-title">Skills</h2>
-            <div className="space-y-1">
-              {resume.skills.map((s: any, i: number) => (
-                <p key={i} className="text-sm"><span className="font-medium">{s.name}:</span> {(s.keywords || []).join(', ')}</p>
-              ))}
-            </div>
-          </section>
-        ) : null}
+          {/* Skills removed from print output per request */}
 
         {resume.education?.length ? (
           <section className="mb-3">

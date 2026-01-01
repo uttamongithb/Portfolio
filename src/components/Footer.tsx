@@ -22,8 +22,8 @@ export default function Footer() {
                     <ul className="space-y-3 text-sm text-neutral-400">
                         <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
                         <li><a href="#projects" className="hover:text-primary transition-colors">Projects</a></li>
-                        <li><a href="#skills" className="hover:text-primary transition-colors">Skills</a></li>
-                        <li><Link to="/resume" className="hover:text-primary transition-colors">Resume</Link></li>
+                        {/* Skills section removed */}
+                        <li><a href="/Resume.pdf" download className="hover:text-primary transition-colors">Download Resume</a></li>
                     </ul>
                 </div>
 

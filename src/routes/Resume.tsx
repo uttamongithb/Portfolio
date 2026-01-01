@@ -26,79 +26,25 @@ export default function Resume() {
             .aurora-bg { display: none !important; }
             .print-page {
               page-break-after: always;
-              padding-top: 2mm !important;
-              padding-bottom: 4mm !important;
-              min-height: calc(297mm - 16mm);
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-            }
-            /* Slightly tighten font sizes for print to improve single-page fit */
-            .print-page .text-sm, .print-page p, .print-page li { font-size: 10.5pt !important; line-height: 1.35 !important; }
-            .print-page h1 { font-size: 18pt !important; }
-            .print-page .resume-section-title { font-size: 12pt !important; }
-            /* Ensure section dividers are visible in print */
-            .print-page hr { border: 0; border-top: 1px solid #000 !important; opacity: 1 !important; margin: 8px 0 !important; }
-            * { color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          }
-        `}</style>
-        <div className="no-print mb-4 flex items-center gap-2">
-          <Link to="/" className="px-3 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700">Back</Link>
-          <button onClick={() => window.print()} className="px-3 py-1.5 rounded-md bg-accent text-white">Download PDF</button>
-        </div>
-        <header className="mb-4">
-          <h1 className="text-3xl font-bold leading-tight">{resume.basics?.name || 'Your Name'}</h1>
-          <p className="text-sm text-neutral-700 dark:text-neutral-300">{resume.basics?.label || 'Your Title'}</p>
-          {/* Location on its own line just below role */}
-          {resume.basics?.location && (
-            <p className="mt-1 text-sm text-neutral-700 dark:text-neutral-300">{resume.basics.location}</p>
-          )}
-          {/* Contact block (two lines) wrapped by horizontal rules; labels added */}
-          {(() => {
-            const itemsLine1: string[] = [] // phone | email
-            const itemsLine2: string[] = [] // LinkedIn/GitHub/Website
-            if (resume.basics?.phone) itemsLine1.push(`Phone: ${resume.basics.phone}`)
-            if (resume.basics?.email) itemsLine1.push(`Email: ${resume.basics.email}`)
-            const site = resume.basics?.url
-            if (site) {
-              if (/linkedin\.com/i.test(site)) itemsLine2.push(`LinkedIn: ${site}`)
-              else itemsLine2.push(`Website: ${site}`)
-            }
-            const ghUrl = Array.isArray(resume.basics?.profiles)
-              ? (resume.basics!.profiles!.find((p: any) => p.network?.toLowerCase() === 'github')?.url as string | undefined)
-              : undefined
-            if (ghUrl) itemsLine2.push(`GitHub: ${ghUrl}`)
-            const showAny = itemsLine1.length > 0 || itemsLine2.length > 0
-            if (!showAny) return null
-            return (
-              <>
-                <hr className="my-3 border-neutral-300 dark:border-neutral-700" />
-                {itemsLine1.length > 0 && (
-                  <p className="text-sm text-neutral-700 dark:text-neutral-300">{itemsLine1.join(' | ')}</p>
-                )}
-                {itemsLine2.length > 0 && (
-                  <p className="text-sm text-neutral-700 dark:text-neutral-300">{itemsLine2.join(' | ')}</p>
-                )}
-                <hr className="my-3 border-neutral-300 dark:border-neutral-700" />
-              </>
-            )
-          })()}
-        </header>
+            import React from 'react'
+            import { Link } from 'react-router-dom'
 
-        {hasSummary && (
-          <section className="mb-3">
-            <h2 className="resume-section-title">Summary</h2>
-            <p className="text-sm">{resume.basics?.summary}</p>
-          </section>
-        )}
-        {/* Divider after Summary if more sections follow */}
-        {hasSummary && (hasSkills || hasExperience || hasProjects || hasEducation) && (
-          <hr className="my-3 border-neutral-300 dark:border-neutral-700" />
-        )}
+            export default function ResumeRedirect() {
+              React.useEffect(() => {
+                // Redirect to the public PDF; this is a safe fallback if the route is visited.
+                window.location.href = '/Resume.pdf'
+              }, [])
 
-        {/* ATS-friendly: Skills early for keyword scanning */}
-        {hasSkills && (
-          <section className="mb-3">
+              return (
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="text-center">
+                    <p className="mb-4">Redirecting to resume download...</p>
+                    <p>If you are not redirected, <a href="/Resume.pdf" download className="text-accent underline">click here to download</a>.</p>
+                    <p className="mt-4"><Link to="/" className="underline">Return home</Link></p>
+                  </div>
+                </div>
+              )
+            }
             <h2 className="resume-section-title">Skills</h2>
             <div className="space-y-1">
               {skills.map((s: any, i: number) => (

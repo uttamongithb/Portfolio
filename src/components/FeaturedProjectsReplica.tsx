@@ -8,7 +8,7 @@ export default function FeaturedProjectsReplica() {
     const projects = loadProjects()
 
     return (
-        <section id="projects" className="py-24 border-b border-white/5">
+        <section id="projects" className="py-16 border-b border-white/5">
             <h2 className="section-title">Featured Projects</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

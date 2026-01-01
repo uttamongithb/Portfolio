@@ -7,7 +7,7 @@ import Home from './routes/Home'
 import Projects from './routes/Projects'
 import ProjectDetail from './routes/ProjectDetail'
 import Contact from './routes/Contact'
-import Resume from './routes/Resume'
+// Resume page removed; download handled via public/resume.pdf
 import Aurora from './components/Aurora'
 
 function Header() {
@@ -23,7 +23,7 @@ function Header() {
           <span>{firstName}</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          {['About', 'Skills', 'Projects'].map((item) => (
+          {['About', 'Projects'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -33,22 +33,14 @@ function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <Link
-            to="/resume"
-            className="px-4 py-2 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-white transition-all hover:border-primary/50"
-          >
-            Resume
-          </Link>
+          <a href="/Resume.pdf" download className="px-4 py-2 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-white transition-all hover:border-primary/50">
+            Download Resume
+          </a>
         </nav>
 
         {/* Mobile Toggle & Actions */}
         <div className="flex items-center gap-4 md:hidden">
-          <Link
-            to="/resume"
-            className="px-3 py-1.5 rounded bg-primary text-background text-xs font-bold"
-          >
-            Resume
-          </Link>
+          <a href="/Resume.pdf" download className="px-3 py-1.5 rounded bg-primary text-background text-xs font-bold">Download</a>
         </div>
       </div>
     </header>
@@ -72,7 +64,6 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/resume" element={<Resume />} />
           </Routes>
         </AnimatePresence>
       </main>

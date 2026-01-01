@@ -4,32 +4,43 @@ import { loadResume } from '../shared/data'
 export default function Skills() {
     const resume = loadResume()
     const categories = resume.skills || []
-
     return (
-        <section id="skills" className="py-24 border-b border-white/5">
+        <section id="skills" className="py-16">
             <h2 className="section-title">Technical Skills</h2>
-            <div className="space-y-12 max-w-5xl mx-auto px-6">
-                {categories.map((category, idx) => (
-                    <div key={idx} className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">
-                                {category.name}
-                            </h3>
-                            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-                        </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                            {(category.keywords || []).map((skill, i) => (
-                                <div
-                                    key={i}
-                                    className="group flex items-center justify-center p-4 rounded-xl bg-surface/30 border border-white/5 hover:border-primary/50 hover:bg-surface/80 transition-all duration-300 hover:-translate-y-1"
-                                >
-                                    <span className="font-medium text-neutral-300 group-hover:text-white transition-colors text-center text-sm">{skill}</span>
-                                </div>
-                            ))}
+            <div className="max-w-4xl mx-auto px-6 space-y-10">
+                {categories.map((category, idx) => {
+                    const skills = category.keywords || []
+                    const visible = skills.slice(0, 8)
+                    const remaining = skills.length - visible.length
+
+                    return (
+                        <div key={idx} className="space-y-4">
+                            <div className="flex items-center gap-4">
+                                <h3 className="text-xl font-semibold text-neutral-200">{category.name}</h3>
+                                <div className="h-px flex-1 bg-white/5" />
+                            </div>
+
+                            <div className="flex flex-wrap gap-3">
+                                {visible.map((skill, i) => (
+                                    <div
+                                        key={i}
+                                        className="px-4 py-2 rounded-full bg-white/3 border border-white/6 text-sm text-neutral-200"
+                                        aria-label={`${skill} skill`}
+                                    >
+                                        {skill}
+                                    </div>
+                                ))}
+
+                                {remaining > 0 && (
+                                    <div className="px-3 py-1.5 rounded-full bg-white/2 border border-white/6 text-xs text-neutral-300 flex items-center">
+                                        +{remaining} more
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         </section>
     )
