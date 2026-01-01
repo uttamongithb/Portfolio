@@ -49,15 +49,16 @@ function Header() {
 
 export default function App() {
   const location = useLocation()
+  const resume = loadResume()
   return (
     <>
       <Helmet>
-        <title>Resume | Portfolio</title>
+        <title>Uttam Portfolio</title>
         <meta name="description" content="Modern resume and portfolio" />
       </Helmet>
       {/* <Aurora /> Removed to fix background mismatch */}
       <Header />
-      <main>
+      <main className="pt-16">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
