@@ -1,5 +1,72 @@
 [
   {
+    "slug": "e-commerce-shopnow-msg",
+    "title": "ShopNow E-commerce (MERN)",
+    "summary": "Full-stack MERN e-commerce with secure payments, admin dashboard, and order tracking.",
+    "description": "A comprehensive e-commerce application built with the MERN stack. Features include a responsive product catalog, secure Stripe payment integration, user authentication with JWT, and a dedicated admin panel for managing products and orders.",
+    "tags": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "Stripe",
+      "MERN",
+      "JWT"
+    ],
+    "year": 2025,
+    "role": "Full-Stack Developer",
+    "tools": [
+      "React 18",
+      "Vite",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Stripe",
+      "JWT"
+    ],
+    "links": {
+      "live": "https://e-commerce-with-msg.vercel.app/",
+      "repo": "https://github.com/uttamongithb/E-commerce-with-msg/"
+    },
+    "cover": "/images/shopnow.png",
+    "gallery": [
+      {
+        "src": "/images/shopnow.png",
+        "alt": "ShopNow Home Page"
+      },
+      {
+        "src": "/images/shopnow1.png",
+        "alt": "ShopNow Product Detail"
+      }
+    ],
+    "problem": "Building a secure and scalable e-commerce platform that handles real money transactions and provides a smooth user experience.",
+    "approach": [
+      "Utilized React and Vite for a fast, responsive frontend.",
+      "Implemented secure payments using Stripe Payment Intents.",
+      "Built a robust REST API with Express and MongoDB.",
+      "Secured the application with JWT authentication and role-based access control."
+    ],
+    "outcomes": [
+      "Functional e-commerce store with live payment capability.",
+      "Integrated admin dashboard for simplified store management.",
+      "Clean, responsive UI for better customer engagement."
+    ],
+    "metrics": [
+      {
+        "label": "Stack",
+        "value": "MERN"
+      },
+      {
+        "label": "Payments",
+        "value": "Stripe"
+      },
+      {
+        "label": "Auth",
+        "value": "JWT"
+      }
+    ]
+  },
+  {
     "slug": "shopnow-ecommerce",
     "title": "ShopNow E‑commerce UI",
     "summary": "React + Tailwind storefront with search, product detail, cart, and order flows.",
