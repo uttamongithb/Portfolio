@@ -1,30 +1,43 @@
 {
-  "name": "resume-portfolio",
-  "version": "0.1.0",
+  "name": "new_portfolio",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^11.3.28",
-    "lucide-react": "^0.471.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.17.10",
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/three": "^0.183.1",
+    "autoprefixer": "^10.4.24",
+    "framer-motion": "^12.34.3",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.575.0",
+    "postcss": "^8.5.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
-    "react-router-dom": "^6.26.2",
-    "zod": "^3.23.8"
+    "react-router-dom": "^7.13.0",
+    "tailwindcss": "^4.2.0",
+    "three": "^0.169.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.3",
+    "@eslint/js": "^9.13.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.11.0",
     "vite": "^5.4.10"
   }
 }
