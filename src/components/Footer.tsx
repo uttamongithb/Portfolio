@@ -11,7 +11,7 @@ export default function Footer() {
         className="text-center font-sans text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[#8B95A6]"
         style={{ fontFamily: FONT.sans }}
       >
-        © {year} Uttam Kumar. All rights reserved.
+        © {year} Uttam Bhartiya. All rights reserved.
       </p>
     </footer>
   )

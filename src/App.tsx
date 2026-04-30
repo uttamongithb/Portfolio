@@ -9,8 +9,8 @@ function AppInner() {
   return (
     <>
       <Helmet>
-        <title>Uttam Kumar — Full Stack Developer</title>
-        <meta name="description" content="Portfolio of Uttam Kumar — Full Stack Developer building fast, scalable, joyful digital experiences." />
+        <title>Uttam Bhartiya — Full Stack Developer</title>
+        <meta name="description" content="Portfolio of Uttam Bhartiya — Full Stack Developer building fast, scalable, joyful digital experiences." />
       </Helmet>
       <Navbar />
       <main className="pt-16">
