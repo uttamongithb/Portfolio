@@ -339,12 +339,20 @@ function AppInner() {
   const location = useLocation()
   const isAdminRoute = location.pathname === '/admin' || location.pathname === '/admin/'
   
+  // Initialize states from localStorage to persist across page reloads
   const [progress, setProgress] = useState(0)
-  const [showLoader, setShowLoader] = useState(!isAdminRoute)
+  const [showLoader, setShowLoader] = useState(() => {
+    if (isAdminRoute) return false
+    const stored = localStorage.getItem('portfolio_showLoader')
+    return stored !== null ? stored === 'true' : true
+  })
   const [done, setDone] = useState(false)
   const [otpToken, setOtpToken] = useState<string | null>(null)
   const [verificationChecked, setVerificationChecked] = useState(false)
-  const [isUserVerified, setIsUserVerified] = useState(false)
+  const [isUserVerified, setIsUserVerified] = useState(() => {
+    const stored = localStorage.getItem('portfolio_verified')
+    return stored === 'true'
+  })
 
   const backendBaseUrl =
     import.meta.env.VITE_BACKEND_URL?.trim() ||
@@ -355,8 +363,20 @@ function AppInner() {
     // Jump directly to 100% on successful verification
     setProgress(100)
     setDone(true)
+    localStorage.setItem('portfolio_verified', 'true')
+    localStorage.setItem('portfolio_showLoader', 'false')
     window.setTimeout(() => setShowLoader(false), 900)
   }
+
+  // Persist showLoader state to localStorage
+  useEffect(() => {
+    localStorage.setItem('portfolio_showLoader', String(showLoader))
+  }, [showLoader])
+
+  // Persist isUserVerified state to localStorage
+  useEffect(() => {
+    localStorage.setItem('portfolio_verified', String(isUserVerified))
+  }, [isUserVerified])
 
   // Preload main website components in background while loader is visible
   useEffect(() => {
@@ -480,6 +500,17 @@ function AppInner() {
         method: 'POST',
         credentials: 'include',
       })
+
+      if (response.ok) {
+        // Clear localStorage and reset states so loader shows on next load
+        localStorage.removeItem('portfolio_verified')
+        localStorage.removeItem('portfolio_showLoader')
+        setIsUserVerified(false)
+        setShowLoader(true)
+        setOtpToken(null)
+        setProgress(0)
+        setDone(false)
+      }
 
       return { ok: response.ok }
     } catch {
