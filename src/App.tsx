@@ -384,6 +384,13 @@ function AppInner() {
       return
     }
 
+    let isMounted = true
+    const timeoutId = window.setTimeout(() => {
+      if (isMounted) {
+        setVerificationChecked(true)
+      }
+    }, 5000) // 5 second timeout
+
     const checkVerifiedVisitor = async () => {
       try {
         const response = await fetch(`${backendBaseUrl}/api/verification-status`, {
@@ -391,7 +398,7 @@ function AppInner() {
         })
 
         const data = await response.json()
-        if (data?.verified) {
+        if (data?.verified && isMounted) {
           // For verified users: keep loader visible, let progress animate to 100%
           // Don't show form, but show loading animation from 0 to 100%
           setProgress(0) // Start from 0 for smooth animation
@@ -400,11 +407,18 @@ function AppInner() {
       } catch {
         // If the backend is unavailable, keep the loader visible so the user can try again.
       } finally {
-        setVerificationChecked(true)
+        if (isMounted) {
+          clearTimeout(timeoutId)
+          setVerificationChecked(true)
+        }
       }
     }
 
     checkVerifiedVisitor()
+    return () => {
+      isMounted = false
+      clearTimeout(timeoutId)
+    }
   }, [backendBaseUrl, isAdminRoute])
 
   const handleRequestOtp = async (formData: VisitorFormData) => {
