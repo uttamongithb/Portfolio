@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 const FONT = {
   serif: 'Cormorant Garamond, Georgia, serif',
   accentSerif: 'Playfair Display, Georgia, serif',
-  sans: 'Inter, system-ui, -apple-system, sans-serif'
+  sans: 'Inter, system-ui, -apple-system, sans-serif',
 }
 
 type Project = {
@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe', 'JWT'],
     image: '/shopnow.png',
     live: 'https://e-commerce-with-msg.vercel.app/',
-    repo: 'https://github.com/uttamongithb/E-commerce-with-msg/'
+    repo: 'https://github.com/uttamongithb/E-commerce-with-msg/',
   },
   {
     type: 'Web App',
@@ -48,7 +48,7 @@ const PROJECTS: Project[] = [
     accent: '#81A594',
     tags: ['React', 'TypeScript', 'Express', 'MongoDB', 'Recharts'],
     image: '/payroll-dashboard.png',
-    live: 'https://payroll-dashboard-navy.vercel.app'
+    live: 'https://payroll-dashboard-navy.vercel.app',
   },
   {
     type: 'Realtime App',
@@ -61,7 +61,7 @@ const PROJECTS: Project[] = [
     tags: ['Node.js', 'Express', 'Socket.IO', 'WebSocket'],
     image: '/realtime-chat.png',
     live: 'https://chatting-site-qzm4.onrender.com/',
-    repo: 'https://github.com/uttamongithb/Chatting-Site'
+    repo: 'https://github.com/uttamongithb/Chatting-Site',
   },
   {
     type: 'Web App',
@@ -73,7 +73,7 @@ const PROJECTS: Project[] = [
     accent: '#7E88C6',
     tags: ['React', 'Express', 'MongoDB', 'Stripe', 'JWT'],
     image: '/shophub-store.png',
-    live: 'https://freelance-e-commerce-frontend.vercel.app/'
+    live: 'https://freelance-e-commerce-frontend.vercel.app/',
   },
   {
     type: 'Enterprise App',
@@ -85,7 +85,7 @@ const PROJECTS: Project[] = [
     accent: '#4E93B5',
     tags: ['React', 'TypeScript', 'NestJS', 'Firebase', 'OCR'],
     image: '/expense-management.png',
-    live: 'https://expense-management-freelacer-web.vercel.app/dashboard'
+    live: 'https://expense-management-freelacer-web.vercel.app/dashboard',
   },
   {
     type: 'Web Platform',
@@ -98,8 +98,8 @@ const PROJECTS: Project[] = [
     tags: ['React', 'Express', 'MongoDB', 'Socket.IO', 'GSAP'],
     image: '/ideashare-platform.png',
     live: 'https://ideashare-eta.vercel.app/',
-    repo: 'https://github.com/uttamongithb/ideashare'
-  }
+    repo: 'https://github.com/uttamongithb/ideashare',
+  },
 ]
 
 export default function ProjectsSection() {
@@ -109,39 +109,45 @@ export default function ProjectsSection() {
   const imageViewportRef = useRef<HTMLDivElement>(null!)
   const imageTrackRef = useRef<HTMLDivElement>(null!)
   const detailRef = useRef<HTMLDivElement>(null!)
-  const imageFloatTweenRef = useRef<gsap.core.Tween | null>(null)
 
   const [activeIndex, setActiveIndex] = useState(0)
   const currentStepRef = useRef(0)
-  const trackTweenRef = useRef<gsap.core.Tween | null>(null)
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     const headingLines = headingRef.current.querySelectorAll('[data-project-line]')
-    const imageSlides = imageTrackRef.current.querySelectorAll('[data-image-slide]')
+    const imageSlides = imageTrackRef.current.querySelectorAll<HTMLElement>('[data-image-slide]')
     const totalSteps = PROJECTS.length - 1
 
     const updateByProgress = (progress: number) => {
-      if (!imageViewportRef.current || !imageTrackRef.current) return
+      if (!imageTrackRef.current) return
 
-      const viewportHeight = imageViewportRef.current.clientHeight
+      const rawStep = totalSteps <= 0 ? 0 : progress * totalSteps
       const nextStep = Math.max(0, Math.min(totalSteps, Math.round(progress * totalSteps)))
+
+      imageSlides.forEach((slide, index) => {
+        if (reduceMotion) {
+          gsap.set(slide, {
+            yPercent: index === nextStep ? 0 : 100,
+            scale: 1,
+            autoAlpha: index === nextStep ? 1 : 0,
+            zIndex: index + 1,
+          })
+          return
+        }
+
+        const incomingOffset = Math.max(0, index - rawStep)
+        gsap.set(slide, {
+          yPercent: incomingOffset * 100,
+          scale: 1,
+          autoAlpha: index <= Math.ceil(rawStep) + 1 ? 1 : 0,
+          zIndex: index + 1,
+          transformOrigin: 'center top',
+        })
+      })
 
       if (nextStep !== currentStepRef.current) {
         currentStepRef.current = nextStep
-        trackTweenRef.current?.kill()
-
-        if (reduceMotion) {
-          gsap.set(imageTrackRef.current, { y: -nextStep * viewportHeight })
-        } else {
-          trackTweenRef.current = gsap.to(imageTrackRef.current, {
-            y: -nextStep * viewportHeight,
-            duration: 0.46,
-            ease: 'power3.out',
-            overwrite: 'auto'
-          })
-        }
       }
 
       setActiveIndex((prev) => (prev === nextStep ? prev : nextStep))
@@ -158,7 +164,7 @@ export default function ProjectsSection() {
           { opacity: 0, y: '120%' },
           { opacity: 1, y: '0%', duration: 0.64, stagger: 0.12, ease: 'power3.out' }
         )
-      }
+      },
     })
 
     const slidesTrigger = ScrollTrigger.create({
@@ -171,27 +177,20 @@ export default function ProjectsSection() {
       anticipatePin: 1,
       fastScrollEnd: true,
       invalidateOnRefresh: true,
-      snap: reduceMotion || totalSteps <= 0
-        ? undefined
-        : {
-            snapTo: (value: number) => Math.round(value * totalSteps) / totalSteps,
-            directional: true,
-            duration: { min: 0.1, max: 0.2 },
-            delay: 0,
-            ease: 'power1.inOut'
-          },
+      snap:
+        reduceMotion || totalSteps <= 0
+          ? undefined
+          : {
+              snapTo: (value: number) => Math.round(value * totalSteps) / totalSteps,
+              directional: true,
+              duration: { min: 0.1, max: 0.2 },
+              delay: 0,
+              ease: 'power1.inOut',
+            },
       onUpdate: (self) => {
         updateByProgress(self.progress)
-      }
+      },
     })
-
-    if (!reduceMotion) {
-      gsap.fromTo(
-        imageSlides,
-        { opacity: 0, y: 26, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.62, stagger: 0.07, ease: 'power3.out' }
-      )
-    }
 
     slidesTrigger.refresh()
     updateByProgress(slidesTrigger.progress)
@@ -201,8 +200,6 @@ export default function ProjectsSection() {
 
     return () => {
       window.removeEventListener('resize', onResize)
-      trackTweenRef.current?.kill()
-      imageFloatTweenRef.current?.kill()
       headingTrigger.kill()
       slidesTrigger.kill()
     }
@@ -220,290 +217,176 @@ export default function ProjectsSection() {
     )
   }, [activeIndex])
 
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const imageTrack = imageTrackRef.current
-    if (!imageTrack) return
-
-    const medias = imageTrack.querySelectorAll<HTMLElement>('[data-image-media]')
-    const glows = imageTrack.querySelectorAll<HTMLElement>('[data-image-glow]')
-
-    imageFloatTweenRef.current?.kill()
-
-    if (reduceMotion) {
-      medias.forEach((media) => {
-        gsap.set(media, { scale: 1, y: 0, opacity: 1, filter: 'none' })
-      })
-      glows.forEach((glow) => {
-        gsap.set(glow, { opacity: 1 })
-      })
-      return
-    }
-
-    medias.forEach((media, index) => {
-      if (index !== activeIndex) {
-        gsap.set(media, { scale: 1, y: 0, opacity: 0.92, filter: 'saturate(0.96) contrast(0.98)' })
-      }
-    })
-
-    const activeMedia = medias[activeIndex]
-    const activeGlow = glows[activeIndex]
-
-    if (activeMedia) {
-      gsap.fromTo(
-        activeMedia,
-        { scale: 1.05, y: 20, opacity: 0.7, filter: 'saturate(0.9) contrast(0.94)' },
-        {
-          scale: 1,
-          y: 0,
-          opacity: 1,
-          filter: 'saturate(1) contrast(1)',
-          duration: 0.72,
-          ease: 'power3.out',
-          overwrite: 'auto'
-        }
-      )
-
-      imageFloatTweenRef.current = gsap.to(activeMedia, {
-        y: -5,
-        scale: 1.012,
-        duration: 3.2,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
-      })
-    }
-
-    if (activeGlow) {
-      gsap.fromTo(
-        activeGlow,
-        { opacity: 0.35 },
-        { opacity: 0.6, duration: 0.64, ease: 'power2.out', overwrite: 'auto' }
-      )
-    }
-
-    return () => {
-      imageFloatTweenRef.current?.kill()
-    }
-  }, [activeIndex])
-
   const active = PROJECTS[activeIndex]
   const progressPct = ((activeIndex + 1) / PROJECTS.length) * 100
+
+  const scrollToProject = (index: number) => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const maxScroll = section.offsetHeight - window.innerHeight
+    const targetY = section.offsetTop + maxScroll * (index / (PROJECTS.length - 1))
+    window.scrollTo({ top: targetY, behavior: 'smooth' })
+  }
 
   return (
     <section
       ref={sectionRef}
       id="projects"
-      className="relative bg-[#FAF9F6]"
+      className="relative bg-[#F7F3D6]"
       style={{ height: `${PROJECTS.length * 100}vh` }}
     >
-      <div ref={stickyRef} className="h-screen overflow-hidden">
-        <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#B89961]/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#8B95A6]/10 blur-3xl" />
-
-        <div className="mx-auto flex h-full max-w-7xl flex-col px-6 pb-8 pt-16 md:px-10 md:pt-16 lg:px-16">
-          <div ref={headingRef} className="mb-7">
-            <p
-              className="mb-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.32em] text-[#8B95A6]"
-              style={{ fontFamily: FONT.sans }}
-            >
-              Case Studies
-            </p>
-
-            <div className="overflow-hidden text-left">
-              <h2
+      <div ref={stickyRef} className="relative h-screen overflow-hidden bg-[#F7F3D6]">
+        <div className="relative h-full w-full px-6 py-10 md:px-10 lg:px-12">
+          <div
+            ref={headingRef}
+            className="absolute left-6 top-1/2 z-30 hidden -translate-y-1/2 text-black md:block lg:left-8"
+          >
+            <div className="relative flex flex-col gap-3">
+              {PROJECTS.map((_, index) => (
+                <div key={index} className="flex h-3 items-center">
+                  <button
+                    type="button"
+                    onClick={() => scrollToProject(index)}
+                    className={`w-3 text-left font-serif text-xs italic leading-none transition-opacity ${
+                      index === activeIndex ? 'opacity-100' : 'opacity-30'
+                    }`}
+                    style={{ fontFamily: FONT.accentSerif }}
+                    aria-label={`Go to project ${index + 1}`}
+                  >
+                    {index + 1}
+                  </button>
+                </div>
+              ))}
+              <div
                 data-project-line
-                className="font-serif text-4xl font-bold leading-none tracking-tight text-[#232B36] md:text-6xl"
-                style={{ fontFamily: FONT.serif }}
+                className="absolute left-6 top-1/2 h-3 -translate-y-1/2 transition-transform duration-500 ease-out"
+                style={{ transform: `translateY(${activeIndex * 24}px)` }}
               >
-                Curated
-                <span className="ml-3 font-light italic text-[#B89961]" style={{ fontFamily: FONT.accentSerif }}>
-                  work
-                </span>
-              </h2>
-            </div>
-
-            <div className="mt-2 overflow-hidden text-left">
-              <p
-                data-project-line
-                className="max-w-2xl font-sans text-[0.95rem] font-light leading-relaxed tracking-wide text-[#8B95A6]"
-                style={{ fontFamily: FONT.sans }}
-              >
-                Image progression is scroll-driven. Description remains fixed and updates for each case study.
-              </p>
+                <span className="h-px w-6 bg-black" />
+              </div>
             </div>
           </div>
 
-          <div className="grid min-h-0 flex-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
-            <div
-              ref={imageViewportRef}
-              className="relative h-full min-h-105 overflow-hidden rounded-3xl border border-[#232B3614] bg-white/70 shadow-[0_10px_30px_rgba(35,43,54,0.06)]"
-            >
-              <div ref={imageTrackRef} className="h-full will-change-transform">
-                {PROJECTS.map((project, index) => (
-                  <article
-                    key={project.title}
-                    data-image-slide
-                    className="relative h-full w-full overflow-hidden p-3 md:p-4"
-                    aria-hidden={activeIndex !== index}
-                  >
-                    <div className="relative h-full overflow-hidden rounded-3xl border border-[#232B3618] bg-[#EEF1F5]">
-                      <div data-image-media className="h-full w-full will-change-transform">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="h-full w-full object-contain"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div
-                        data-image-glow
-                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#232B36]/26 via-[#232B36]/4 to-transparent"
-                      />
+          <div
+            ref={imageViewportRef}
+            className="absolute left-1/2 top-1/2 z-10 h-[62vh] w-[88vw] min-w-[18rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden shadow-[0_18px_54px_rgba(17,17,17,0.22)] md:h-[76vh] md:w-[min(46vw,48rem)] md:min-w-[20rem]"
+          >
+            <div ref={imageTrackRef} className="relative h-full overflow-hidden">
+              {PROJECTS.map((project, index) => (
+                <article
+                  key={project.title}
+                  data-image-slide
+                  className="absolute inset-0 h-full w-full overflow-hidden bg-[#EDE5DA] shadow-[0_-28px_80px_rgba(0,0,0,0.24)] will-change-transform"
+                  aria-hidden={activeIndex !== index}
+                >
+                  <div data-image-media className="h-full w-full">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover"
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
 
-                      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 md:p-6">
-                        <div>
-                          <p
-                            className="mb-1 font-sans text-[0.62rem] font-medium uppercase tracking-[0.2em] text-white/80"
-                            style={{ fontFamily: FONT.sans }}
-                          >
-                            {String(index + 1).padStart(2, '0')} · {project.type}
-                          </p>
-                          <p
-                            className="font-serif text-3xl font-bold leading-none text-white md:text-4xl"
-                            style={{ fontFamily: FONT.serif }}
-                          >
-                            {project.title}
-                          </p>
-                        </div>
-                        <span
-                          className={`rounded-full border px-3 py-1 font-sans text-[0.58rem] font-medium uppercase tracking-[0.14em] backdrop-blur-sm ${
-                            activeIndex === index
-                              ? 'border-[#B89961] bg-[#B89961]/20 text-white'
-                              : 'border-white/35 bg-white/10 text-white/85'
-                          }`}
-                          style={{ fontFamily: FONT.sans }}
-                        >
-                          {activeIndex === index ? 'Active' : project.period}
-                        </span>
-                      </div>
-                    </div>
-                  </article>
+          <div ref={detailRef}>
+            <h2
+              data-detail-item
+              className="absolute left-6 top-[16%] z-30 max-w-[calc(100vw-3rem)] font-sans text-[clamp(2.25rem,10.5vw,3.7rem)] font-black leading-[0.98] tracking-[-0.055em] text-black md:left-[8vw] md:top-1/2 md:max-w-[38vw] md:-translate-y-1/2 md:text-[clamp(2.65rem,4.7vw,5.7rem)]"
+              style={{ fontFamily: FONT.sans }}
+            >
+              {active.title}
+            </h2>
+
+            <aside className="absolute right-[8vw] top-1/2 z-30 hidden w-[min(17vw,18rem)] -translate-y-1/2 md:block">
+              <div
+                data-detail-item
+                className="font-sans text-[clamp(0.95rem,1.2vw,1.35rem)] font-black leading-[1.22] tracking-[-0.04em] text-black"
+              >
+                {active.tags.slice(0, 3).map((tag) => (
+                  <p key={tag}>{tag.replace('Node.js', 'Node JS')}</p>
+                ))}
+              </div>
+
+              <div data-detail-item className="mt-8 flex items-center gap-3">
+                <a
+                  href={active.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-sans text-xs font-black uppercase tracking-[-0.02em] text-black underline decoration-black/40 underline-offset-4"
+                  style={{ fontFamily: FONT.sans }}
+                >
+                  Live Link
+                </a>
+                {active.repo ? (
+                  <a
+                    href={active.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-sans text-xs font-black uppercase tracking-[-0.02em] text-black/60 underline decoration-black/25 underline-offset-4"
+                    style={{ fontFamily: FONT.sans }}
+                  >
+                    Source
+                  </a>
+                ) : null}
+              </div>
+            </aside>
+
+            <div className="absolute right-6 top-1/2 z-30 hidden -translate-y-1/2 md:block lg:right-10">
+              <div className="flex flex-col gap-2.5">
+                {PROJECTS.map((project, index) => (
+                  <button
+                    key={project.title}
+                    type="button"
+                    onClick={() => scrollToProject(index)}
+                    className="group flex h-7 items-center justify-start"
+                    aria-label={`Go to ${project.title}`}
+                  >
+                    <span
+                      className={`h-px w-7 bg-black transition-opacity duration-300 ${
+                        index === activeIndex ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                    <span
+                      className={`ml-3 block h-7 w-12 bg-black/10 transition-opacity duration-300 ${
+                        index === activeIndex ? 'opacity-100' : 'opacity-55 group-hover:opacity-85'
+                      }`}
+                    >
+                      <img src={project.image} alt="" className="h-full w-full object-cover" loading="lazy" />
+                    </span>
+                  </button>
                 ))}
               </div>
             </div>
 
-            <aside className="h-full min-h-105 overflow-hidden">
-              <div
-                ref={detailRef}
-                className="h-full rounded-3xl border border-[#232B3614] bg-white/80 p-6 shadow-[0_14px_36px_rgba(35,43,54,0.09)] backdrop-blur-sm md:p-7"
-              >
-                <div data-detail-item className="mb-5">
-                  <div className="mb-2 flex items-center justify-between gap-3">
-                    <p
-                      className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.22em] text-[#8B95A6]"
-                      style={{ fontFamily: FONT.sans }}
-                    >
-                      Case Progress
-                    </p>
-                    <p
-                      className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.18em] text-[#8B95A6]"
-                      style={{ fontFamily: FONT.sans }}
-                    >
-                      {String(activeIndex + 1).padStart(2, '0')} / {String(PROJECTS.length).padStart(2, '0')}
-                    </p>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-[#232B360D]">
-                    <div
-                      className="h-full rounded-full transition-all duration-300"
-                      style={{ width: `${progressPct}%`, backgroundColor: active.accent }}
-                    />
-                  </div>
-                </div>
-
+            <div className="absolute inset-x-6 bottom-6 z-30 md:hidden">
+              <div className="bg-[#F7F3D6]/90 p-4 shadow-[0_14px_42px_rgba(17,17,17,0.18)]">
                 <p
                   data-detail-item
-                  className="mb-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.24em] text-[#8B95A6]"
+                  className="font-sans text-xs font-black uppercase tracking-[-0.02em] text-black"
                   style={{ fontFamily: FONT.sans }}
                 >
-                  {String(activeIndex + 1).padStart(2, '0')} · {active.type} · {active.period}
+                  {String(activeIndex + 1).padStart(2, '0')} / {String(PROJECTS.length).padStart(2, '0')} - {active.type}
                 </p>
-
-                <h3
-                  data-detail-item
-                  className="font-serif text-4xl font-bold leading-none text-[#232B36] md:text-5xl"
-                  style={{ fontFamily: FONT.serif }}
-                >
-                  {active.title}
-                </h3>
-
                 <p
                   data-detail-item
-                  className="mt-3 inline-flex rounded-full border border-[#232B3618] bg-white/75 px-3 py-1 font-sans text-[0.62rem] font-medium uppercase tracking-[0.12em]"
-                  style={{ fontFamily: FONT.sans, color: active.accent }}
-                >
-                  {active.impact}
-                </p>
-
-                <p
-                  data-detail-item
-                  className="mt-5 max-w-xl font-sans text-[0.95rem] font-light leading-relaxed tracking-wide text-[#6D7688]"
+                  className="mt-2 font-sans text-sm font-semibold leading-snug text-black/70"
                   style={{ fontFamily: FONT.sans }}
                 >
                   {active.summary}
                 </p>
-
-                <p
-                  data-detail-item
-                  className="mt-4 max-w-xl border-l-2 border-[#232B361A] pl-3 font-sans text-[0.86rem] font-light leading-relaxed tracking-wide text-[#7C8596]"
-                  style={{ fontFamily: FONT.sans, borderLeftColor: `${active.accent}66` }}
-                >
-                  {active.outcome}
-                </p>
-
-                <div data-detail-item className="mt-5 flex flex-wrap gap-2">
-                  {active.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[#232B3618] bg-white/75 px-3 py-1 font-sans text-[0.6rem] font-medium uppercase tracking-[0.14em] text-[#8B95A6]"
-                      style={{ fontFamily: FONT.sans }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div data-detail-item className="mt-7 flex flex-wrap items-center gap-3">
-                  <a
-                    href={active.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 items-center rounded-full border px-5 py-2.5 font-sans text-[0.62rem] font-medium uppercase tracking-[0.16em] transition-colors hover:text-white"
-                    style={{ fontFamily: FONT.sans, borderColor: active.accent, color: active.accent }}
-                    onMouseEnter={(event) => {
-                      event.currentTarget.style.backgroundColor = active.accent
-                    }}
-                    onMouseLeave={(event) => {
-                      event.currentTarget.style.backgroundColor = 'transparent'
-                    }}
-                  >
-                    View Details
-                  </a>
-
-                  {active.repo ? (
-                    <a
-                      href={active.repo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex min-h-11 items-center rounded-full border border-[#232B3624] px-5 py-2.5 font-sans text-[0.62rem] font-medium uppercase tracking-[0.16em] text-[#6D7688] transition-colors hover:border-[#8B95A6] hover:text-[#232B36]"
-                      style={{ fontFamily: FONT.sans }}
-                    >
-                      Source
-                    </a>
-                  ) : null}
-                </div>
               </div>
-            </aside>
+            </div>
+
+            <div className="absolute bottom-8 left-1/2 z-30 hidden w-[min(46vw,48rem)] -translate-x-1/2 md:block">
+              <div className="h-1 overflow-hidden bg-black/10">
+                <div className="h-full bg-black transition-all duration-300" style={{ width: `${progressPct}%` }} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

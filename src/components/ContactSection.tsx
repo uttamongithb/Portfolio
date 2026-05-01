@@ -23,52 +23,34 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
-  const endpoint = import.meta.env.VITE_GOOGLE_SHEETS_WEBAPP_URL
-  const isValidEndpoint =
-    typeof endpoint === 'string' && endpoint.startsWith('https://script.google.com/macros/s/')
+  const backendBaseUrl =
+    import.meta.env.VITE_BACKEND_URL?.trim() ||
+    import.meta.env.VITE_API_URL?.trim() ||
+    'http://localhost:4000'
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setStatus(null)
 
-    if (!endpoint) {
-      setStatus({
-        type: 'error',
-        text: 'Contact form endpoint is missing. Add VITE_GOOGLE_SHEETS_WEBAPP_URL in .env.'
-      })
-      return
-    }
-
-    if (!isValidEndpoint) {
-      setStatus({
-        type: 'error',
-        text: 'Use Apps Script Web App URL in .env (https://script.google.com/macros/s/.../exec), not an API key.'
-      })
-      return
-    }
-
     try {
       setIsSubmitting(true)
 
-      await fetch(endpoint, {
+      const response = await fetch(`${backendBaseUrl}/api/contact`, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          ...form,
-          source: 'portfolio-contact-form',
-          submittedAt: new Date().toISOString()
-        })
+        body: JSON.stringify(form)
       })
+
+      if (!response.ok) throw new Error('Failed to send message')
 
       setStatus({ type: 'success', text: 'Message sent successfully. I will get back to you soon.' })
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch {
       setStatus({
         type: 'error',
-        text: 'Could not send message. Check Apps Script deployment access (Anyone) and confirm you used the /exec URL.'
+        text: 'Could not send message. Please try again later.'
       })
     } finally {
       setIsSubmitting(false)

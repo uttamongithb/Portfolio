@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Menu, X } from 'lucide-react'
@@ -132,6 +133,12 @@ export default function Navbar() {
 
                 {/* Right Section – CTA & Extras */}
                 <div className="flex items-center gap-4">
+                    <Link
+                        to="/admin"
+                        className="hidden md:inline-block border border-[#1A1F3A]/15 text-[#1A1F3A] px-5 py-2 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300 hover:bg-[#1A1F3A] hover:text-white hover:border-[#1A1F3A]"
+                    >
+                        Admin
+                    </Link>
                     <a
                         ref={btnRef}
                         href="#contact"
@@ -189,6 +196,13 @@ export default function Navbar() {
                 </div>
 
                 <div className="mb-8 border-t border-[#E5E5E5] pt-8">
+                    <Link
+                        to="/admin"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block text-center mb-3 border border-[#1A1F3A]/10 text-[#1A1F3A] px-6 py-3 rounded-full text-sm uppercase tracking-wider font-medium hover:bg-[#1A1F3A] hover:text-white transition-colors"
+                    >
+                        Admin
+                    </Link>
                     <a
                         href="#contact"
                         onClick={() => setIsMobileMenuOpen(false)}
