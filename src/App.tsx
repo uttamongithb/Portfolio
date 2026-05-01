@@ -344,7 +344,11 @@ function AppInner() {
   const [done, setDone] = useState(false)
   const [otpToken, setOtpToken] = useState<string | null>(null)
   const [verificationChecked, setVerificationChecked] = useState(false)
-  const [isUserVerified, setIsUserVerified] = useState(false)
+  // Initialize from localStorage to preserve verified state across reloads
+  const [isUserVerified, setIsUserVerified] = useState(() => {
+    const stored = localStorage.getItem('portfolio_verified')
+    return stored === 'true'
+  })
 
   const backendBaseUrl =
     import.meta.env.VITE_BACKEND_URL?.trim() ||
@@ -355,8 +359,14 @@ function AppInner() {
     // Jump directly to 100% on successful verification
     setProgress(100)
     setDone(true)
+    localStorage.setItem('portfolio_verified', 'true')
     window.setTimeout(() => setShowLoader(false), 900)
   }
+
+  // Persist verification state to localStorage
+  useEffect(() => {
+    localStorage.setItem('portfolio_verified', String(isUserVerified))
+  }, [isUserVerified])
 
   // Preload main website components in background while loader is visible
   useEffect(() => {
@@ -385,7 +395,9 @@ function AppInner() {
     }
 
     let isMounted = true
+    const controller = new AbortController()
     const timeoutId = window.setTimeout(() => {
+      controller.abort()
       if (isMounted) {
         setVerificationChecked(true)
       }
@@ -395,17 +407,26 @@ function AppInner() {
       try {
         const response = await fetch(`${backendBaseUrl}/api/verification-status`, {
           credentials: 'include',
+          signal: controller.signal,
         })
 
         const data = await response.json()
-        if (data?.verified && isMounted) {
-          // For verified users: keep loader visible, let progress animate to 100%
-          // Don't show form, but show loading animation from 0 to 100%
-          setProgress(0) // Start from 0 for smooth animation
-          setIsUserVerified(true)
+        if (isMounted) {
+          if (data?.verified) {
+            // Backend confirms verified
+            setProgress(0)
+            setIsUserVerified(true)
+          } else if (!isUserVerified) {
+            // Backend says not verified, but only update if we don't already have verified state
+            setIsUserVerified(false)
+          }
         }
-      } catch {
-        // If the backend is unavailable, keep the loader visible so the user can try again.
+      } catch (err) {
+        // If the backend is unavailable or request times out, keep whatever state we have
+        // This preserves localStorage verified state
+        if (isMounted && err instanceof Error && err.name !== 'AbortError') {
+          console.error('Verification check failed:', err)
+        }
       } finally {
         if (isMounted) {
           clearTimeout(timeoutId)
@@ -417,6 +438,7 @@ function AppInner() {
     checkVerifiedVisitor()
     return () => {
       isMounted = false
+      controller.abort()
       clearTimeout(timeoutId)
     }
   }, [backendBaseUrl, isAdminRoute])
@@ -494,6 +516,17 @@ function AppInner() {
         method: 'POST',
         credentials: 'include',
       })
+
+      if (response.ok) {
+        // Clear verification state so form shows again on next load
+        localStorage.removeItem('portfolio_verified')
+        setIsUserVerified(false)
+        setShowLoader(true)
+        setOtpToken(null)
+        setProgress(0)
+        setDone(false)
+        setVerificationChecked(false)
+      }
 
       return { ok: response.ok }
     } catch {
