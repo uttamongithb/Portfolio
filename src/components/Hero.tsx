@@ -327,7 +327,7 @@ export default function Hero() {
                         {/* Extended Description */}
                         <div className="overflow-hidden">
                         <p data-reveal-words="right" className="font-sans font-light text-[0.85rem] md:text-base tracking-wide text-[#70798C] mb-12 max-w-lg md:max-w-xl leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-                            Building digital experiences with intention. A passionate developer focused on creating elegant, high-performance web applications that merge stunning design with seamless functionality.
+                            Hi, I am Uttam Kumar Bhartiya (Uttam Bhartiya). A passionate full stack developer, web developer, and hacker focused on creating elegant, high-performance, and secure web applications that merge stunning design with seamless functionality.
                         </p>
                         </div>
 
