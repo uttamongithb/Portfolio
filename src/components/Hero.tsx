@@ -305,44 +305,44 @@ export default function Hero() {
                         {/* Decorative Line & Role */}
                         <div className="mb-5 overflow-hidden md:mb-6">
                             <div data-reveal="up" className="flex items-center gap-4">
-                            <span className="h-px w-8 bg-[#D4C4A8] md:w-12"></span>
-                            <span data-reveal-words="right" className="font-sans text-[0.65rem] md:text-xs tracking-[0.3em] uppercase text-[#8B95A6]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                                Full-Stack Developer
-                            </span>
-                            <span className="h-px w-8 bg-[#D4C4A8] md:w-12"></span>
+                                <span className="h-px w-8 bg-[#D4C4A8] md:w-12"></span>
+                                <span data-reveal-words="right" className="font-sans text-[0.65rem] md:text-xs tracking-[0.3em] uppercase text-[#8B95A6]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    Full-Stack Developer
+                                </span>
+                                <span className="h-px w-8 bg-[#D4C4A8] md:w-12"></span>
                             </div>
                         </div>
 
                         {/* Name: Creative Typography mix */}
                         <div className="overflow-hidden">
-                        <h1 data-reveal="up" className="font-serif text-6xl md:text-[5.5rem] lg:text-[6.5rem] tracking-tight text-[#232B36] mb-6 md:mb-8 leading-none">
-                            <span className="italic font-light text-[#B89961] mr-3 md:mr-6 text-5xl md:text-[4.5rem]" style={{ fontFamily: "'Playfair Display', serif" }}>I'm</span>
-                            <span className="font-bold relative inline-block" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                                Uttam
-                                <span className="absolute -bottom-2 left-0 h-0.5 w-full bg-linear-to-r from-transparent via-[#B89961] to-transparent opacity-70 md:-bottom-4 md:h-0.75"></span>
-                            </span>
-                        </h1>
+                            <h1 data-reveal="up" className="font-serif text-6xl md:text-[5.5rem] lg:text-[6.5rem] tracking-tight text-[#232B36] mb-6 md:mb-8 leading-none">
+                                <span className="italic font-light text-[#B89961] mr-3 md:mr-6 text-5xl md:text-[4.5rem]" style={{ fontFamily: "'Playfair Display', serif" }}>I'm</span>
+                                <span className="font-bold relative inline-block" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                                    Uttam
+                                    <span className="absolute -bottom-2 left-0 h-0.5 w-full bg-linear-to-r from-transparent via-[#B89961] to-transparent opacity-70 md:-bottom-4 md:h-0.75"></span>
+                                </span>
+                            </h1>
                         </div>
 
                         {/* Extended Description */}
                         <div className="overflow-hidden">
-                        <p data-reveal-words="right" className="font-sans font-light text-[0.85rem] md:text-base tracking-wide text-[#70798C] mb-12 max-w-lg md:max-w-xl leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
-                            Hi, I am Uttam Kumar Bhartiya (Uttam Bhartiya). A passionate full stack developer, web developer, and hacker focused on creating elegant, high-performance, and secure web applications that merge stunning design with seamless functionality.
-                        </p>
+                            <p data-reveal-words="right" className="font-sans font-light text-[0.85rem] md:text-base tracking-wide text-[#70798C] mb-12 max-w-lg md:max-w-xl leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                Building digital experiences with intention. A passionate developer focused on creating elegant, high-performance web applications that merge stunning design with seamless functionality.
+                            </p>
                         </div>
 
                         <div className="overflow-hidden">
-                        <div data-reveal="up" className="pointer-events-auto flex flex-col sm:flex-row gap-6 md:gap-8 items-center justify-center">
-                            {/* Primary Button */}
-                            <a href="#projects" className="font-sans font-medium text-[0.65rem] md:text-xs tracking-[0.15em] uppercase border border-[#B89961] bg-transparent text-[#B89961] px-8 py-3.5 rounded-full hover:bg-[#B89961] hover:text-[#FFFFFF] transition-colors shadow-[0_4px_14px_rgba(184,153,97,0.15)] hover:shadow-none" style={{ fontFamily: "'Inter', sans-serif" }}>
-                                View Projects
-                            </a>
-                            {/* Secondary Link */}
-                            <a href="#about" className="font-sans font-medium text-[0.65rem] md:text-xs tracking-[0.15em] uppercase text-[#8B95A6] hover:text-[#B89961] transition-colors relative group py-2" style={{ fontFamily: "'Inter', sans-serif" }}>
-                                Read My Story
-                                <span className="absolute bottom-0 left-0 right-0 h-px bg-[#B89961] scale-x-0 origin-left transition-transform group-hover:scale-x-100"></span>
-                            </a>
-                        </div>
+                            <div data-reveal="up" className="pointer-events-auto flex flex-col sm:flex-row gap-6 md:gap-8 items-center justify-center">
+                                {/* Primary Button */}
+                                <a href="#projects" className="font-sans font-medium text-[0.65rem] md:text-xs tracking-[0.15em] uppercase border border-[#B89961] bg-transparent text-[#B89961] px-8 py-3.5 rounded-full hover:bg-[#B89961] hover:text-[#FFFFFF] transition-colors shadow-[0_4px_14px_rgba(184,153,97,0.15)] hover:shadow-none" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    View Projects
+                                </a>
+                                {/* Secondary Link */}
+                                <a href="#about" className="font-sans font-medium text-[0.65rem] md:text-xs tracking-[0.15em] uppercase text-[#8B95A6] hover:text-[#B89961] transition-colors relative group py-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    Read My Story
+                                    <span className="absolute bottom-0 left-0 right-0 h-px bg-[#B89961] scale-x-0 origin-left transition-transform group-hover:scale-x-100"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -359,34 +359,34 @@ export default function Hero() {
                         }}
                     >
                         <div className="overflow-hidden">
-                        <span data-reveal-words="right" style={{
-                            fontFamily: "'Inter', sans-serif", fontSize: '0.64rem',
-                            fontWeight: 500, letterSpacing: '0.34em', color: SAGE,
-                            textTransform: 'uppercase', marginBottom: 16,
-                            textShadow: `0 0 20px ${SAGE}88`,
-                        }}>
-                            My Arsenal
-                        </span>
+                            <span data-reveal-words="right" style={{
+                                fontFamily: "'Inter', sans-serif", fontSize: '0.64rem',
+                                fontWeight: 500, letterSpacing: '0.34em', color: SAGE,
+                                textTransform: 'uppercase', marginBottom: 16,
+                                textShadow: `0 0 20px ${SAGE}88`,
+                            }}>
+                                My Arsenal
+                            </span>
                         </div>
                         <div className="overflow-hidden">
-                        <h2 data-reveal="up" style={{
-                            fontFamily: '"Cormorant Garamond", serif', fontWeight: 700, fontStyle: 'italic',
-                            fontSize: 'clamp(2.6rem, 6.5vw, 5rem)', lineHeight: 0.95,
-                            color: OFF_WHITE, marginBottom: 14,
-                            textShadow: '0 2px 30px rgba(0,0,0,0.60)',
-                        }}>
-                            Technologies<br />I Master
-                        </h2>
+                            <h2 data-reveal="up" style={{
+                                fontFamily: '"Cormorant Garamond", serif', fontWeight: 700, fontStyle: 'italic',
+                                fontSize: 'clamp(2.6rem, 6.5vw, 5rem)', lineHeight: 0.95,
+                                color: OFF_WHITE, marginBottom: 14,
+                                textShadow: '0 2px 30px rgba(0,0,0,0.60)',
+                            }}>
+                                Technologies<br />I Master
+                            </h2>
                         </div>
                         <div className="overflow-hidden">
-                        <p data-reveal-words="right" style={{
-                            fontFamily: "'Inter', sans-serif", fontWeight: 300,
-                            fontSize: 'clamp(0.78rem, 1.8vw, 0.95rem)',
-                            color: `${OFF_WHITE}80`, letterSpacing: '0.06em',
-                            maxWidth: 400,
-                        }}>
-                            Full-stack expertise across modern ecosystems
-                        </p>
+                            <p data-reveal-words="right" style={{
+                                fontFamily: "'Inter', sans-serif", fontWeight: 300,
+                                fontSize: 'clamp(0.78rem, 1.8vw, 0.95rem)',
+                                color: `${OFF_WHITE}80`, letterSpacing: '0.06em',
+                                maxWidth: 400,
+                            }}>
+                                Full-stack expertise across modern ecosystems
+                            </p>
                         </div>
                     </div>
 
@@ -403,61 +403,61 @@ export default function Hero() {
                         }}
                     >
                         <div className="overflow-hidden">
-                        <span data-reveal-words="right" style={{
-                            fontFamily: "'Inter', sans-serif", fontSize: '0.64rem',
-                            fontWeight: 500, letterSpacing: '0.34em', color: TERRACOTTA,
-                            textTransform: 'uppercase', marginBottom: 16,
-                            textShadow: `0 0 20px ${TERRACOTTA}88`,
-                        }}>
-                            Portfolio
-                        </span>
+                            <span data-reveal-words="right" style={{
+                                fontFamily: "'Inter', sans-serif", fontSize: '0.64rem',
+                                fontWeight: 500, letterSpacing: '0.34em', color: TERRACOTTA,
+                                textTransform: 'uppercase', marginBottom: 16,
+                                textShadow: `0 0 20px ${TERRACOTTA}88`,
+                            }}>
+                                Portfolio
+                            </span>
                         </div>
                         <div className="overflow-hidden">
-                        <h2 data-reveal="up" style={{
-                            fontFamily: '"Cormorant Garamond", serif', fontWeight: 700, fontStyle: 'italic',
-                            fontSize: 'clamp(2.6rem, 6.5vw, 5rem)', lineHeight: 0.95,
-                            color: OFF_WHITE, marginBottom: 14,
-                            textShadow: '0 2px 30px rgba(0,0,0,0.60)',
-                        }}>
-                            Featured<br />Work
-                        </h2>
+                            <h2 data-reveal="up" style={{
+                                fontFamily: '"Cormorant Garamond", serif', fontWeight: 700, fontStyle: 'italic',
+                                fontSize: 'clamp(2.6rem, 6.5vw, 5rem)', lineHeight: 0.95,
+                                color: OFF_WHITE, marginBottom: 14,
+                                textShadow: '0 2px 30px rgba(0,0,0,0.60)',
+                            }}>
+                                Featured<br />Work
+                            </h2>
                         </div>
                         <div className="overflow-hidden">
-                        <p data-reveal-words="right" style={{
-                            fontFamily: "'Inter', sans-serif", fontWeight: 300,
-                            fontSize: 'clamp(0.78rem, 1.8vw, 0.95rem)',
-                            color: `${OFF_WHITE}80`, letterSpacing: '0.06em',
-                            marginBottom: 28, maxWidth: 360,
-                        }}>
-                            Crafted with care, built to last
-                        </p>
+                            <p data-reveal-words="right" style={{
+                                fontFamily: "'Inter', sans-serif", fontWeight: 300,
+                                fontSize: 'clamp(0.78rem, 1.8vw, 0.95rem)',
+                                color: `${OFF_WHITE}80`, letterSpacing: '0.06em',
+                                marginBottom: 28, maxWidth: 360,
+                            }}>
+                                Crafted with care, built to last
+                            </p>
                         </div>
                         <div className="overflow-hidden">
-                        <a
-                            data-reveal="up"
-                            href="#projects"
-                            style={{
-                                pointerEvents: 'auto',
-                                position: 'absolute',
-                                left: '50%',
-                                bottom: '9vh',
-                                transform: 'translateX(-50%)',
-                                display: 'inline-flex', alignItems: 'center', gap: 8,
-                                fontFamily: "'Inter', sans-serif",
-                                fontSize: '0.70rem', fontWeight: 500,
-                                letterSpacing: '0.20em', textTransform: 'uppercase',
-                                color: OFF_WHITE, background: TERRACOTTA,
-                                border: `1.5px solid ${TERRACOTTA}`,
-                                borderRadius: 999, padding: '12px 30px',
-                                textDecoration: 'none',
-                                boxShadow: `0 4px 24px ${TERRACOTTA}55`,
-                                transition: 'transform 0.25s ease',
-                            }}
-                            onMouseEnter={e => (e.currentTarget.style.transform = 'translateX(-50%) scale(1.05)')}
-                            onMouseLeave={e => (e.currentTarget.style.transform = 'translateX(-50%) scale(1)')}
-                        >
-                            View Projects <ArrowRight size={12} />
-                        </a>
+                            <a
+                                data-reveal="up"
+                                href="#projects"
+                                style={{
+                                    pointerEvents: 'auto',
+                                    position: 'absolute',
+                                    left: '50%',
+                                    bottom: '9vh',
+                                    transform: 'translateX(-50%)',
+                                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontSize: '0.70rem', fontWeight: 500,
+                                    letterSpacing: '0.20em', textTransform: 'uppercase',
+                                    color: OFF_WHITE, background: TERRACOTTA,
+                                    border: `1.5px solid ${TERRACOTTA}`,
+                                    borderRadius: 999, padding: '12px 30px',
+                                    textDecoration: 'none',
+                                    boxShadow: `0 4px 24px ${TERRACOTTA}55`,
+                                    transition: 'transform 0.25s ease',
+                                }}
+                                onMouseEnter={e => (e.currentTarget.style.transform = 'translateX(-50%) scale(1.05)')}
+                                onMouseLeave={e => (e.currentTarget.style.transform = 'translateX(-50%) scale(1)')}
+                            >
+                                View Projects <ArrowRight size={12} />
+                            </a>
                         </div>
                     </div>
 
