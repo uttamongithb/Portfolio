@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
 import Home from './routes/Home'
 import AdminDashboard from './components/AdminDashboard'
+import Blog from './components/Blog'
+import BlogDetail from './components/BlogDetail'
 
 import Navbar from './components/Navbar'
 
@@ -613,6 +615,8 @@ function AppInner() {
       <main className={isAdminRoute ? '' : 'pt-16'}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </main>

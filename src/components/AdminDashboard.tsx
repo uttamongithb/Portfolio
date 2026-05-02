@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   BadgeCheck,
+  BookOpen,
   Clock3,
   Eye,
   EyeOff,
@@ -15,6 +16,7 @@ import {
   Users,
   X,
 } from 'lucide-react'
+import BlogManagement from './BlogManagement'
 
 type Message = {
   id: string
@@ -56,7 +58,7 @@ type Lead = {
   otpAttempts?: number
 }
 
-type AdminView = 'dashboard' | 'visitors' | 'messages'
+type AdminView = 'dashboard' | 'visitors' | 'messages' | 'blog'
 
 type AdminResponse = {
   leads: Lead[]
@@ -515,6 +517,7 @@ export default function AdminDashboard() {
             <SectionButton active={activeView === 'dashboard'} icon={Home} label="Dashboard" onClick={() => setActiveView('dashboard')} />
             <SectionButton active={activeView === 'visitors'} icon={Users} label="Visitors" onClick={() => setActiveView('visitors')} />
             <SectionButton active={activeView === 'messages'} icon={MessageSquare} label="Contact Us Data" onClick={() => setActiveView('messages')} />
+            <SectionButton active={activeView === 'blog'} icon={BookOpen} label="Blog" onClick={() => setActiveView('blog')} />
           </nav>
 
           <div className="mt-auto pt-6">
@@ -745,6 +748,18 @@ export default function AdminDashboard() {
                     </table>
                   </div>
                 )}
+              </section>
+            ) : activeView === 'blog' ? (
+              <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="flex flex-col gap-3 border-b border-slate-200 p-4 md:flex-row md:items-center md:justify-between md:p-5">
+                  <div>
+                    <h2 className="text-lg font-semibold text-slate-900">Blog Management</h2>
+                    <p className="text-sm text-slate-500">Create, edit, and manage your blog posts.</p>
+                  </div>
+                </div>
+                <div className="p-4 md:p-5">
+                  <BlogManagement isAdmin={isAdmin} />
+                </div>
               </section>
             ) : (
               <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
