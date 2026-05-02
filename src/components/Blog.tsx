@@ -18,7 +18,7 @@ interface BlogPost {
 const Blog: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [categories, setCategories] = useState<string[]>([])
-  const [tags, setTags] = useState<string[]>([])
+  const [, setTags] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')

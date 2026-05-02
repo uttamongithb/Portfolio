@@ -758,7 +758,7 @@ export default function AdminDashboard() {
                   </div>
                 </div>
                 <div className="p-4 md:p-5">
-                  <BlogManagement isAdmin={isAdmin} />
+                  <BlogManagement isAdmin={authenticated} />
                 </div>
               </section>
             ) : (
