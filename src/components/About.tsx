@@ -386,7 +386,7 @@ export default function About() {
             className="mt-8 max-w-2xl font-sans text-[0.95rem] font-light leading-relaxed tracking-wide text-[#8B95A6] md:text-base"
             style={{ fontFamily: FONT.sans }}
           >
-            Scroll to explore how Uttam Kumar Bhartiya (Uttam Bhartiya), a full stack developer, thinks, builds, and delivers products with calm precision.
+           Scroll to explore how I think, build, and deliver products with calm precision.
           </p>
         </div>
 
