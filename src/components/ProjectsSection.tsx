@@ -337,29 +337,31 @@ export default function ProjectsSection() {
             </aside>
 
             <div className="absolute right-6 top-1/2 z-30 hidden -translate-y-1/2 md:block lg:right-10">
-              <div className="flex flex-col gap-2.5">
+              <div className="relative pl-10">
+                <span
+                  className="absolute left-0 top-3.5 h-px w-7 bg-black transition-transform duration-500 ease-out"
+                  style={{ transform: `translateY(${activeIndex * 38}px)` }}
+                />
+                <div className="flex flex-col gap-2.5">
                 {PROJECTS.map((project, index) => (
                   <button
                     key={project.title}
                     type="button"
                     onClick={() => scrollToProject(index)}
-                    className="group flex h-7 items-center justify-start"
+                    className="group block h-7 w-12 overflow-hidden bg-black/10"
                     aria-label={`Go to ${project.title}`}
                   >
-                    <span
-                      className={`h-px w-7 bg-black transition-opacity duration-300 ${
-                        index === activeIndex ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
-                    <span
-                      className={`ml-3 block h-7 w-12 bg-black/10 transition-opacity duration-300 ${
+                    <img
+                      src={project.image}
+                      alt=""
+                      className={`h-full w-full object-cover transition-opacity duration-300 ${
                         index === activeIndex ? 'opacity-100' : 'opacity-55 group-hover:opacity-85'
                       }`}
-                    >
-                      <img src={project.image} alt="" className="h-full w-full object-cover" loading="lazy" />
-                    </span>
+                      loading="lazy"
+                    />
                   </button>
                 ))}
+                </div>
               </div>
             </div>
 
