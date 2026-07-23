@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
   <url>
     <loc>https://www.uttambhartiya.in/</loc>
-    <lastmod>2026-02-27</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.uttambhartiya.in/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.uttambhartiya.in/" />
+    <image:image>
+      <image:loc>https://www.uttambhartiya.in/uttam-kumar-bhartiya.jpg</image:loc>
+      <image:title>Uttam Kumar Bhartiya - Software Engineer and Full Stack Developer</image:title>
+      <image:caption>Profile image for Uttam Kumar Bhartiya, software engineer and full stack developer.</image:caption>
+    </image:image>
   </url>
 </urlset>

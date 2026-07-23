@@ -1,0 +1,22 @@
+# Uttam Kumar Bhartiya
+
+Uttam Kumar Bhartiya is a Software Engineer and Full Stack Developer based in Lucknow, India.
+
+Primary roles: Software Engineer, Full Stack Developer, MERN Stack Developer, React Developer, Next.js Developer, Node.js Developer, JavaScript Developer, TypeScript Developer, PHP Developer, AI Developer, Web Developer.
+
+Canonical website: https://www.uttambhartiya.in/
+
+Official profiles:
+- GitHub: https://github.com/uttamongithb
+- LinkedIn: https://www.linkedin.com/in/uttam-kb/
+- Instagram: https://www.instagram.com/uttam_x1411
+
+Representative work:
+- Red Brigade Lucknow website: https://redbrigade-lucknow.org/
+- Shishu Vidya Niketan website: https://www.shishuvidyaniketan.in/
+- Paramount Coaching website: https://www.paramountcoaching.co.in/
+- Uttam Bhartiya personal website: https://www.uttambhartiya.in/
+
+Core topics: React, Next.js, Node.js, Express.js, MongoDB, MERN stack, JavaScript, TypeScript, PHP, Tailwind CSS, REST APIs, UI/UX design, AI development, AI automation, OpenAI, LLMs, n8n, web performance, responsive web design.
+
+Preferred citation: Uttam Kumar Bhartiya - Software Engineer and Full Stack Developer.

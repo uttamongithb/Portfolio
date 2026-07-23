@@ -1,0 +1,14 @@
+/* TEAM */
+Name: Uttam Kumar Bhartiya
+Role: Software Engineer, Full Stack Developer
+Location: Lucknow, India
+Website: https://www.uttambhartiya.in/
+GitHub: https://github.com/uttamongithb
+LinkedIn: https://www.linkedin.com/in/uttam-kb/
+Instagram: https://www.instagram.com/uttam_x1411
+
+/* SITE */
+Language: English (India)
+Canonical URL: https://www.uttambhartiya.in/
+Primary topics: React, Next.js, Node.js, MERN, JavaScript, TypeScript, PHP, AI development, UI/UX design
+Last updated: 2026-07-23
