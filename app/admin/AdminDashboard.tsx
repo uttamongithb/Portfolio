@@ -152,10 +152,25 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
                           <tr key={index}>
                             <td style={{ whiteSpace: 'nowrap' }}>{contact[0] ? formatDate(contact[0]) : '-'}</td>
                             <td><strong>{contact[1] || '-'}</strong></td>
-                            <td>{contact[2] || '-'}</td>
+                            <td>
+                              <a href={`mailto:${contact[2]}`} style={{ color: '#4d78ff', textDecoration: 'none', fontWeight: 600 }}>
+                                {contact[2] || '-'}
+                              </a>
+                            </td>
                             <td>{contact[3] || '-'}</td>
-                            <td style={{ maxWidth: '400px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {contact[4] || '-'}
+                            <td style={{ maxWidth: '400px', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
+                              {contact[4] ? (
+                                contact[4].startsWith('[Project:') ? (
+                                  <div>
+                                    <span className={styles.badge} style={{ marginBottom: '8px' }}>
+                                      {contact[4].split(']')[0].replace('[Project:', '').trim()}
+                                    </span>
+                                    <div>{contact[4].split(']').slice(1).join(']').trim()}</div>
+                                  </div>
+                                ) : (
+                                  contact[4]
+                                )
+                              ) : '-'}
                             </td>
                           </tr>
                         ))
@@ -170,7 +185,7 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
           {activeView === 'messages' && (
             <div className={styles.tableContainer}>
               <div className={styles.tableHeader}>
-                <h2>Contact Us Data</h2>
+                <h2>All Contact Us Data</h2>
               </div>
               
               <div style={{ overflowX: 'auto' }}>
@@ -205,7 +220,7 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
                             </a>
                           </td>
                           <td>{contact[3] || '-'}</td>
-                          <td style={{ maxWidth: '400px', lineHeight: '1.5' }}>
+                          <td style={{ maxWidth: '400px', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>
                             {contact[4] ? (
                               contact[4].startsWith('[Project:') ? (
                                 <div>

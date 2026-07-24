@@ -121,10 +121,187 @@
 
 .content {
   padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
   position: relative;
   z-index: 2;
+}
+
+.messagesFeed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.messageCard {
+  background: #fffdfb;
+  border: 2px solid #18213b;
+  border-radius: 20px;
+  padding: 26px 32px;
+  box-shadow: 6px 6px 0 #18213b;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.messageCard:hover {
+  transform: translate(-3px, -4px);
+  box-shadow: 9px 10px 0 #18213b;
+}
+
+.messageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px dashed rgba(24,33,59,0.15);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.senderInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  background: #9ed8fc;
+  border: 2px solid #18213b;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 24px;
+  font-weight: 800;
+  color: #18213b;
+  box-shadow: 3px 4px 0 #18213b;
+  transform: rotate(-4deg);
+}
+
+.messageCard:nth-child(even) .avatar {
+  background: #ffb4bf;
+  transform: rotate(4deg);
+}
+
+.messageCard:nth-child(3n) .avatar {
+  background: #ffd97c;
+}
+
+.senderInfo h4 {
+  margin: 0 0 6px 0;
+  font-family: 'Baloo 2', cursive;
+  font-size: 24px;
+  font-weight: 800;
+  color: #18213b;
+  line-height: 1;
+}
+
+.contactDetails {
+  display: flex;
+  gap: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #596278;
+  align-items: center;
+}
+
+.contactDetails a {
+  color: #4d78ff;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contactDetails a:hover {
+  text-decoration: underline;
+}
+
+.timestamp {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #596278;
+  background: rgba(24,33,59,0.04);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.messageBody {
+  color: #354365;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.tableContainer {
+  background: #fffdfb;
+  border: 2px solid #18213b;
+  border-radius: 0;
+  box-shadow: 10px 10px 0 #18213b;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
+
+.tableHeader {
+  padding: 24px 32px;
+  border-bottom: 2px solid #18213b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fdf6de;
+}
+
+.tableHeader h2 {
+  margin: 0;
+  font-family: 'Baloo 2', cursive;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #18213b;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 18px 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #354365;
+  font-weight: 600;
+  border-bottom: 2px solid #18213b;
+  background: #fffdfa;
+}
+
+.table td {
+  padding: 20px 32px;
+  font-size: 14px;
+  color: #4c5872;
+  border-bottom: 1px solid rgba(24,33,59,0.1);
+  transition: background 0.2s;
+  vertical-align: top;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #f8faff;
+}
+
+.table td strong {
+  color: #18213b;
+  font-weight: 700;
 }
 
 .stats {
@@ -138,7 +315,7 @@
   background: #fffdfb;
   border: 2px solid #18213b;
   padding: 24px;
-  border-radius: 25px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -160,7 +337,7 @@
 .statIcon1, .statIcon2 {
   width: 54px;
   height: 54px;
-  border-radius: 50%;
+  border-radius: 0;
   background: #fff;
   border: 2px solid #18213b;
   color: #18213b;
@@ -289,6 +466,7 @@
   border-radius: 30px;
   width: 100%;
   max-width: 440px;
+  box-sizing: border-box;
   box-shadow: 12px 13px 0 #18213b;
   text-align: center;
   animation: float 6s ease-in-out infinite;
