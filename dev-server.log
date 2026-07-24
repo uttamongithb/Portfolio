@@ -169,3 +169,5 @@ Error handling contact form: Error: error:1E08010C:DECODER routines::unsupported
  ✓ Compiled in 1432ms (257 modules)
  ✓ Compiled in 340ms (247 modules)
  ✓ Compiled in 3.4s (247 modules)
+   Reload env: .env
+ ✓ Compiled in 335ms (247 modules)
