@@ -256,6 +256,7 @@ export default function App() {
   const [attemptCount, setAttemptCount] = useState(0);
   const [message, setMessage] = useState("Will you talk on the call tonight?");
   const noButtonRef = useRef<HTMLButtonElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -264,25 +265,56 @@ export default function App() {
     setIsMounted(true);
   }, []);
 
-  // Try to autoplay music immediately as requested
+  // Create audio element and attempt autoplay
   useEffect(() => {
+    const audio = new Audio('/jane-na-tu.mp3');
+    audio.loop = true;
+    audio.preload = 'auto';
+    audioRef.current = audio;
+
+    // Attempt autoplay after a short delay
     const timer = setTimeout(() => {
-      setIsPlaying(true);
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            // Autoplay blocked by browser — will play on first user interaction
+          });
+      }
     }, 500);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(timer);
+      audio.pause();
+      audio.src = '';
+      audioRef.current = null;
+    };
   }, []);
 
-  // Start music on user interaction
+  // Start music on user interaction (handles autoplay-blocked case)
   const startMusic = useCallback(() => {
-    if (!isPlaying) {
-      setIsPlaying(true);
+    if (audioRef.current && !isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch(() => {}); // Silently handle if still blocked
+      }
     }
   }, [isPlaying]);
 
+  // Listen for any user gesture to unlock audio
   useEffect(() => {
-    const handleGlobalClick = () => startMusic();
-    document.addEventListener('click', handleGlobalClick);
-    return () => document.removeEventListener('click', handleGlobalClick);
+    const handleInteraction = () => startMusic();
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+    return () => {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
   }, [startMusic]);
 
   // Generate stars
@@ -387,16 +419,6 @@ export default function App() {
 
   return (
     <>
-
-      {/* Background Music */}
-      {isPlaying && (
-        <audio
-          src="/jane-na-tu.mp3"
-          autoPlay
-          loop
-          className="hidden"
-        />
-      )}
 
       {showSuccess ? (
       <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 flex items-center justify-center p-4 overflow-hidden relative">
