@@ -279,6 +279,12 @@ export default function App() {
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    const handleGlobalClick = () => startMusic();
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, [startMusic]);
+
   // Generate stars
   const stars = useMemo(() => Array.from({ length: 60 }, (_, i) => ({
     id: i,
@@ -382,19 +388,14 @@ export default function App() {
   return (
     <>
 
-      {/* YouTube Music - Hidden iframe that plays after interaction */}
+      {/* Background Music */}
       {isPlaying && (
-        <div className="absolute top-0 left-0 w-1 h-1 overflow-hidden opacity-0 pointer-events-none z-0">
-          <iframe
-            width="1"
-            height="1"
-            src="https://www.youtube.com/embed/xeOttl1d2bo?autoplay=1&loop=1&playlist=xeOttl1d2bo"
-            title="YouTube Music"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+        <audio
+          src="/jane-na-tu.mp3"
+          autoPlay
+          loop
+          className="hidden"
+        />
       )}
 
       {showSuccess ? (
@@ -459,7 +460,7 @@ export default function App() {
           {isPlaying && (
             <div className="mt-6 flex items-center justify-center gap-2 text-pink-300/60 text-xs">
               <span className="animate-bounce">🎵</span>
-              <span>Playing: Mikrokosmos - BTS</span>
+              <span>Playing: Jane Na Tu</span>
               <div className="flex gap-0.5 items-end h-3">
                 <div className="w-0.5 bg-pink-400 animate-music-bar" style={{ animationDelay: '0s' }} />
                 <div className="w-0.5 bg-pink-400 animate-music-bar" style={{ animationDelay: '0.2s' }} />
@@ -589,7 +590,7 @@ export default function App() {
         {/* Music Indicator */}
         <div className="mt-4 flex items-center justify-center gap-2 text-pink-300/60 text-xs">
           <span className="animate-bounce">🎵</span>
-          <span>Now Playing: Mikrokosmos - BTS</span>
+          <span>Now Playing: Jane Na Tu</span>
           <div className="flex gap-0.5 items-end h-3">
             <div className="w-0.5 bg-pink-400 animate-music-bar" style={{ animationDelay: '0s' }} />
             <div className="w-0.5 bg-pink-400 animate-music-bar" style={{ animationDelay: '0.2s' }} />
