@@ -264,7 +264,7 @@ export default function App() {
     setIsMounted(true);
   }, []);
 
-  // Try to autoplay music immediately
+  // Try to autoplay music immediately as requested
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPlaying(true);
@@ -272,7 +272,7 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Also start on interaction as fallback
+  // Start music on user interaction
   const startMusic = useCallback(() => {
     if (!isPlaying) {
       setIsPlaying(true);
@@ -315,11 +315,12 @@ export default function App() {
     
     if (distance < 150) {
       // Move to a random position within the bottom half of the screen
-      const maxX = window.innerWidth - buttonRect.width - 100;
-      const maxY = window.innerHeight - buttonRect.height - 150;
-      const minY = window.innerHeight * 0.5;
+      const padding = 20;
+      const maxX = window.innerWidth - buttonRect.width - padding;
+      const maxY = window.innerHeight - buttonRect.height - padding;
+      const minY = window.innerHeight * 0.4;
       
-      let newX = 50 + Math.random() * (maxX - 100);
+      let newX = padding + Math.random() * (maxX - padding);
       let newY = minY + Math.random() * (maxY - minY);
       
       const centerX = window.innerWidth / 2;
@@ -328,6 +329,10 @@ export default function App() {
       if (Math.abs(newX - centerX) < 150 && Math.abs(newY - centerY) < 100) {
         newX = newX < centerX ? newX - 200 : newX + 200;
       }
+
+      // Ensure button stays strictly within bounds for mobile
+      newX = Math.max(padding, Math.min(newX, maxX));
+      newY = Math.max(minY, Math.min(newY, maxY));
       
       setNoButtonPosition({ x: newX, y: newY });
       setAttemptCount(prev => {
@@ -367,7 +372,6 @@ export default function App() {
   };
 
   const handleInteraction = (e: React.MouseEvent) => {
-    startMusic();
     moveNoButton(e.clientX, e.clientY);
   };
 
@@ -375,8 +379,25 @@ export default function App() {
     return null; // Prevent hydration mismatch from Math.random() on SSR
   }
 
-  if (showSuccess) {
-    return (
+  return (
+    <>
+
+      {/* YouTube Music - Hidden iframe that plays after interaction */}
+      {isPlaying && (
+        <div className="absolute top-0 left-0 w-1 h-1 overflow-hidden opacity-0 pointer-events-none z-0">
+          <iframe
+            width="1"
+            height="1"
+            src="https://www.youtube.com/embed/xeOttl1d2bo?autoplay=1&loop=1&playlist=xeOttl1d2bo"
+            title="YouTube Music"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )}
+
+      {showSuccess ? (
       <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 flex items-center justify-center p-4 overflow-hidden relative">
         {/* Stars */}
         <div className="absolute inset-0 pointer-events-none">
@@ -394,21 +415,6 @@ export default function App() {
         {fireflies.map((firefly) => (
           <Firefly key={firefly.id} {...firefly} />
         ))}
-
-        {/* YouTube Music - Continue playing */}
-        {isPlaying && (
-          <div className="absolute top-0 left-0 w-1 h-1 overflow-hidden opacity-0 pointer-events-none">
-            <iframe
-              width="1"
-              height="1"
-              src="https://www.youtube.com/embed/xeOttl1d2bo?autoplay=1&loop=1&playlist=xeOttl1d2bo"
-              title="YouTube Music"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        )}
 
         {/* Trees */}
         <Tree side="left" />
@@ -486,29 +492,13 @@ export default function App() {
           }
         `}</style>
       </div>
-    );
-  }
-
-  return (
-    <div 
+      ) : (
+      <div 
       className="min-h-screen bg-gradient-to-b from-slate-900 via-indigo-950 to-purple-900 flex flex-col items-center justify-center p-4 overflow-hidden relative"
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
+      onClick={startMusic}
     >
-      {/* YouTube Music - Hidden iframe that plays after interaction */}
-      {isPlaying && (
-        <div className="absolute top-0 left-0 w-1 h-1 overflow-hidden opacity-0 pointer-events-none">
-          <iframe
-            width="1"
-            height="1"
-            src="https://www.youtube.com/embed/xeOttl1d2bo?autoplay=1&loop=1&playlist=xeOttl1d2bo"
-            title="YouTube Music"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      )}
 
       {/* Starry Sky */}
       <div className="absolute inset-0 pointer-events-none">
@@ -713,5 +703,7 @@ export default function App() {
         }
       `}</style>
     </div>
+    )}
+    </>
   );
 }
