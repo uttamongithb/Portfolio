@@ -7,3 +7,27 @@
 
  ✓ Starting...
  ✓ Ready in 3.4s
+   Reload env: .env
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 27.1s (1726 modules)
+ GET /admin 200 in 29929ms
+Error: Failed to find Server Action "any". This request might be from an older or newer deployment. Original error: Cannot read properties of undefined (reading 'workers')
+    at rC (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:40:1694)
+    at r_ (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:40:1661)
+    at C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:179
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at rk (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:38:8305)
+    at ne (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:42:1262)
+    at C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:43:726
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Object.wrap (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:17827)
+    at C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:43:616
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Object.wrap (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:16929)
+    at nt (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:43:543)
+    at nb.render (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:43:4699)
+    at doRender (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\server\base-server.js:1427:44)
+    at cacheEntry.responseCache.get.routeKind (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\server\base-server.js:1588:34)
+    at ResponseCache.get (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\server\response-cache\index.js:49:26)
+    at DevServer.renderToResponseWithComponentsImpl (C:\Users\user\Desktop\for vs code\Portfolio\portfolio-nextjs\node_modules\next\dist\server\base-server.js:1496:53)
+ POST /admin 200 in 275ms

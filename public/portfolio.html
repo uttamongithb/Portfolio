@@ -152,7 +152,11 @@ html{scroll-behavior:smooth}.section{isolation:isolate}.scene-motion{position:ab
 
     <section class="section short" id="proof"><div class="shell content proof-layout"><div><div class="eyebrow"><i></i> Built with intention</div><h2>Creative energy,<br>grounded in craft.</h2><p class="proof-copy">My work is made for organizations and teams that need more than a website—they need a memorable, useful digital presence.</p></div><div class="proof-stats"><div class="proof-stat"><b>4+</b><span>Published client projects</span></div><div class="proof-stat"><b>4</b><span>Industries brought to life</span></div><div class="proof-stat"><b>End-to-end</b><span>Creative delivery</span></div><div class="proof-stat"><b>∞</b><span>Curiosity for what’s next</span></div></div></div></section>
 
-    <section class="section" id="contact"><div class="contact-stars"></div><div class="shell content"><div class="contact-grid"><div class="contact-copy"><div class="eyebrow" style="color:#c5cee5"><i></i> Start the next scene</div><h2>Have an idea worth <mark>bringing to life?</mark></h2><p>Whether it starts as a sketch, story or ambitious product idea, let’s turn it into a digital experience people will want to explore.</p><div class="contact-buttons"><a class="btn primary" href="/cdn-cgi/l/email-protection#d0b8b5bcbcbf90b5a8b1bda0bcb5feb3bfbd">Start a conversation <span class="arrow">→</span></a><a class="btn secondary" href="#work">See project archive</a></div><div class="contact-note"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81c9c4cdcdcec1c4d9c0ccd1cdc4afc2cecc">[email&#160;protected]</a> &nbsp; · &nbsp; LUCKNOW, INDIA &nbsp; · &nbsp; AVAILABLE FOR COLLABORATIONS</div></div><form class="form-card" id="contact-form"><h3>Send a mission ✦</h3><div class="form-row"><label>Your name<input required placeholder="Your name" /></label><label>Email address<input type="email" required placeholder="you@email.com" /></label></div><label>Project type<input placeholder="Website, product, design..." /></label><label>Tell me about your idea<textarea placeholder="A few words about your project..."></textarea></label><button class="btn primary" type="submit">Send mission <span>→</span></button><div class="sent-msg" id="sent-msg">Mission received — thank you! ✦</div></form></div><footer class="footer"><div><strong>Uttam</strong> · Crafted with code, color & curiosity.</div><div><a href="#home">Back to top ↑</a><a href="#contact">Contact</a></div></footer></div></section>
+    <section class="section" id="contact"><div class="contact-stars"></div><div class="shell content"><div class="contact-grid"><div class="contact-copy"><div class="eyebrow" style="color:#c5cee5"><i></i> Start the next scene</div><h2>Have an idea worth <mark>bringing to life?</mark></h2><p>Whether it starts as a sketch, story or ambitious product idea, let’s turn it into a digital experience people will want to explore.</p><div class="contact-buttons"><a class="btn primary" href="/cdn-cgi/l/email-protection#d0b8b5bcbcbf90b5a8b1bda0bcb5feb3bfbd">Start a conversation <span class="arrow">→</span></a><a class="btn secondary" href="#work">See project archive</a></div><div class="contact-note"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81c9c4cdcdcec1c4d9c0ccd1cdc4afc2cecc">[email&#160;protected]</a> &nbsp; · &nbsp; LUCKNOW, INDIA &nbsp; · &nbsp; AVAILABLE FOR COLLABORATIONS</div></div><form class="form-card" id="contact-form"><h3>Send a mission ✦</h3><div class="form-row"><label>Your name<input required placeholder="Your name" name="name" /></label><label>Email address<input type="email" required placeholder="you@email.com" name="email" /></label></div>
+<div class="form-row">
+  <label>Mobile number<input type="tel" required placeholder="Your mobile number" name="mobile" /></label>
+  <label>Project type<input placeholder="Website, product, design..." name="project" /></label>
+</div><label>Tell me about your idea<textarea placeholder="A few words about your project..." name="message"></textarea></label><button class="btn primary" type="submit">Send mission <span>→</span></button><div class="sent-msg" id="sent-msg">Mission received — thank you! ✦</div></form></div><footer class="footer"><div><strong>Uttam</strong> · Crafted with code, color & curiosity.</div><div><a href="#home">Back to top ↑</a><a href="#contact">Contact</a></div></footer></div></section>
   </main>
   <script>
     const nav = document.getElementById('nav');
@@ -163,7 +167,37 @@ html{scroll-behavior:smooth}.section{isolation:isolate}.scene-motion{position:ab
     new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting) orbit.style.setProperty('--scene',sceneColours[entry.target.id]||'#ff6d61')}),{threshold:.45}).observe(document.querySelector('#home'));
     document.querySelectorAll('main section:not(#home)').forEach(section=>new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting) orbit.style.setProperty('--scene',sceneColours[entry.target.id]||'#ff6d61')}),{threshold:.45}).observe(section));
     document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click',()=>nav.classList.remove('open')));
-    document.getElementById('contact-form').addEventListener('submit', e => { e.preventDefault(); document.getElementById('sent-msg').style.display='block'; e.currentTarget.querySelector('button').textContent='Mission sent ✓'; });
+    
+    document.getElementById('contact-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.currentTarget.querySelector('button');
+      const originalText = btn.innerHTML;
+      btn.textContent = 'Sending...';
+      
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+          document.getElementById('sent-msg').style.display='block';
+          btn.textContent='Mission sent ✓';
+          e.target.reset();
+        } else {
+          btn.innerHTML = originalText;
+          alert('Failed to send message. Please try again.');
+        }
+      } catch (err) {
+        btn.innerHTML = originalText;
+        alert('An error occurred while sending the message.');
+      }
+    });
+
   </script>
 
 <script>
