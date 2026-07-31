@@ -171,3 +171,18 @@ Error handling contact form: Error: error:1E08010C:DECODER routines::unsupported
  ✓ Compiled in 3.4s (247 modules)
    Reload env: .env
  ✓ Compiled in 335ms (247 modules)
+ ✓ Compiled in 767ms (247 modules)
+ ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 3.9s
+ ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 6.9s
