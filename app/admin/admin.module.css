@@ -16,8 +16,23 @@
   50% { transform: translateY(-8px); }
 }
 
-.container, .dashboard {
+.dashboard {
   min-height: 100vh;
+  background: linear-gradient(125deg, #e8e2ff 0%, #daf0ff 54%, #fef5dd 100%);
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  color: #18213b;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
   background: linear-gradient(125deg, #e8e2ff 0%, #daf0ff 54%, #fef5dd 100%);
   font-family: 'Plus Jakarta Sans', Arial, sans-serif;
   color: #18213b;
