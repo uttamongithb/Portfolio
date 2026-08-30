@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { getContactsFromSheet } from '../../lib/google-sheets';
+import { getContactsFromSheet, getVisitorsFromSheet } from '../../lib/google-sheets';
 import AdminDashboard from './AdminDashboard';
 import LoginForm from './LoginForm';
 
@@ -17,13 +17,19 @@ export default async function AdminPage() {
   }
 
   let contacts: any[] = [];
+  let visitors: any[] = [];
   let error: string | null = null;
 
   try {
-    contacts = await getContactsFromSheet();
+    const [contactsData, visitorsData] = await Promise.all([
+      getContactsFromSheet(),
+      getVisitorsFromSheet(),
+    ]);
+    contacts = contactsData;
+    visitors = visitorsData;
   } catch (err: any) {
-    error = err.message || 'Failed to fetch contacts';
+    error = err.message || 'Failed to fetch data';
   }
 
-  return <AdminDashboard initialContacts={contacts} error={error} />;
+  return <AdminDashboard initialContacts={contacts} initialVisitors={visitors} error={error} />;
 }

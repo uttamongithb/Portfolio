@@ -210,5 +210,10 @@ let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;
 const numbers=document.querySelectorAll('#proof .proof-stat b');const metricObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;numbers.forEach(n=>{const original=n.textContent?.trim()||'';const value=parseInt(original,10);if(!Number.isFinite(value)||n.dataset.counted)return;n.dataset.counted='true';let start=0;const timer=setInterval(()=>{start+=Math.max(1,Math.ceil(value/24));if(start>=value){n.textContent=original;clearInterval(timer)}else n.textContent=start+'+'},35)});metricObserver.unobserve(e.target)}),{threshold:.5});const proof=document.querySelector('#proof');if(proof)metricObserver.observe(proof);
 })();
 </script>
+
+<script>
+/* Visitor tracking: fire-and-forget call to /api/track on page load */
+(()=>{try{const d={page:location.pathname,referrer:document.referrer||'Direct'};const b=JSON.stringify(d);if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}))}else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true}).catch(()=>{})}}catch(e){}})();
+</script>
 </body>
 </html>

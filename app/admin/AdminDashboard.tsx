@@ -4,11 +4,24 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout } from './actions';
 import styles from './admin.module.css';
-import { LogOut, Users, MessageSquare, Briefcase, Mail, Home, Menu, X, BookOpen } from 'lucide-react';
+import { LogOut, Users, MessageSquare, Briefcase, Mail, Home, Menu, X, BookOpen, Globe, Monitor, Smartphone, Tablet, Bot } from 'lucide-react';
 
-type AdminView = 'dashboard' | 'messages';
+type AdminView = 'dashboard' | 'messages' | 'visitors';
 
-export default function AdminDashboard({ initialContacts, error }: { initialContacts: any[], error: string | null }) {
+interface Visitor {
+  timestamp: string;
+  ip: string;
+  city: string;
+  region: string;
+  country: string;
+  browser: string;
+  os: string;
+  device: string;
+  page: string;
+  referrer: string;
+}
+
+export default function AdminDashboard({ initialContacts, initialVisitors, error }: { initialContacts: any[], initialVisitors: Visitor[], error: string | null }) {
   const router = useRouter();
   const [activeView, setActiveView] = useState<AdminView>('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -33,6 +46,26 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
       return dateString;
     }
   };
+
+  // Device icon helper
+  const getDeviceIcon = (device: string) => {
+    switch (device.toLowerCase()) {
+      case 'mobile': return <Smartphone size={14} />;
+      case 'tablet': return <Tablet size={14} />;
+      case 'bot': return <Bot size={14} />;
+      default: return <Monitor size={14} />;
+    }
+  };
+
+  // Count unique visitors by IP
+  const uniqueIPs = new Set(initialVisitors.map(v => v.ip)).size;
+
+  // Count today's visitors
+  const today = new Date().toISOString().split('T')[0];
+  const todayVisitors = initialVisitors.filter(v => v.timestamp.startsWith(today)).length;
+
+  // Count unique countries
+  const uniqueCountries = new Set(initialVisitors.filter(v => v.country && v.country !== 'Local' && v.country !== 'Unknown').map(v => v.country)).size;
 
   const SectionButton = ({ view, icon: Icon, label }: { view: AdminView, icon: any, label: string }) => (
     <button
@@ -77,6 +110,7 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
           <SectionButton view="dashboard" icon={Home} label="Dashboard" />
           <SectionButton view="messages" icon={MessageSquare} label="Contact Us Data" />
+          <SectionButton view="visitors" icon={Globe} label="Visitors" />
         </nav>
 
         <div style={{ marginTop: 'auto' }}>
@@ -91,10 +125,11 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
         <header className={styles.header} style={{ borderBottom: '1px solid rgba(24,33,59, 0.1)', background: 'transparent' }}>
           <div>
             <h1 style={{ fontSize: '24px', margin: 0 }}>
-              {activeView === 'dashboard' ? 'Overview' : 'Contact Us Data'}
+              {activeView === 'dashboard' ? 'Overview' : activeView === 'visitors' ? 'Visitor Analytics' : 'Contact Us Data'}
             </h1>
             <p style={{ margin: '4px 0 0', color: '#596278', fontSize: '14px', fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
               {activeView === 'dashboard' ? 'Overview of contact form data.' : 
+               activeView === 'visitors' ? 'Track who visits your portfolio — IP, location, device & more.' :
                'Contact form submissions synced from Google Sheets.'}
             </p>
           </div>
@@ -117,6 +152,24 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
                   <div className={styles.statInfo}>
                     <h3>{initialContacts.length}</h3>
                     <p>Total Transmissions</p>
+                  </div>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon2}>
+                    <Globe size={32} strokeWidth={2.5} />
+                  </div>
+                  <div className={styles.statInfo}>
+                    <h3>{initialVisitors.length}</h3>
+                    <p>Total Page Views</p>
+                  </div>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon2}>
+                    <Users size={32} strokeWidth={2.5} />
+                  </div>
+                  <div className={styles.statInfo}>
+                    <h3>{uniqueIPs}</h3>
+                    <p>Unique Visitors</p>
                   </div>
                 </div>
               </div>
@@ -241,6 +294,163 @@ export default function AdminDashboard({ initialContacts, error }: { initialCont
                 </table>
               </div>
             </div>
+          )}
+
+          {activeView === 'visitors' && (
+            <>
+              {/* Visitor Stats */}
+              <div className={styles.stats}>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon2}>
+                    <Globe size={32} strokeWidth={2.5} />
+                  </div>
+                  <div className={styles.statInfo}>
+                    <h3>{initialVisitors.length}</h3>
+                    <p>Total Page Views</p>
+                  </div>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon2}>
+                    <Users size={32} strokeWidth={2.5} />
+                  </div>
+                  <div className={styles.statInfo}>
+                    <h3>{uniqueIPs}</h3>
+                    <p>Unique Visitors</p>
+                  </div>
+                </div>
+                <div className={styles.statCard}>
+                  <div className={styles.statIcon2}>
+                    <Monitor size={32} strokeWidth={2.5} />
+                  </div>
+                  <div className={styles.statInfo}>
+                    <h3>{todayVisitors}</h3>
+                    <p>Today's Visits</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Visitor Table */}
+              <div className={styles.tableContainer}>
+                <div className={styles.tableHeader}>
+                  <h2>All Visitors 🌍</h2>
+                  <span style={{
+                    fontFamily: '"DM Mono", monospace',
+                    fontSize: '11px',
+                    color: '#596278',
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
+                  }}>
+                    {uniqueCountries} {uniqueCountries === 1 ? 'COUNTRY' : 'COUNTRIES'}
+                  </span>
+                </div>
+
+                <div style={{ overflowX: 'auto' }}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>IP</th>
+                        <th>Location</th>
+                        <th>Device</th>
+                        <th>Browser / OS</th>
+                        <th>Page</th>
+                        <th>Referrer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {initialVisitors.length === 0 ? (
+                        <tr>
+                          <td colSpan={7}>
+                            <div className={styles.emptyState}>
+                              <Globe size={48} />
+                              <p>No visitors tracked yet. Data will appear once your Google Apps Script is updated and the site is deployed.</p>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : (
+                        initialVisitors.slice().reverse().map((visitor, index) => (
+                          <tr key={index}>
+                            <td style={{ whiteSpace: 'nowrap' }}>
+                              {visitor.timestamp ? formatDate(visitor.timestamp) : '-'}
+                            </td>
+                            <td>
+                              <code style={{
+                                fontFamily: '"DM Mono", monospace',
+                                fontSize: '12px',
+                                background: 'rgba(24,33,59,0.05)',
+                                padding: '3px 8px',
+                                borderRadius: '6px',
+                              }}>
+                                {visitor.ip || '-'}
+                              </code>
+                            </td>
+                            <td>
+                              {visitor.city && visitor.city !== 'Unknown' ? (
+                                <div>
+                                  <strong>{visitor.city}</strong>
+                                  <div style={{ fontSize: '12px', color: '#596278', marginTop: '2px' }}>
+                                    {[visitor.region, visitor.country].filter(Boolean).join(', ')}
+                                  </div>
+                                </div>
+                              ) : (
+                                <span style={{ color: '#596278' }}>{visitor.country || '-'}</span>
+                              )}
+                            </td>
+                            <td>
+                              <span style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                padding: '4px 10px',
+                                borderRadius: '8px',
+                                fontSize: '12px',
+                                fontWeight: 600,
+                                background: visitor.device === 'Mobile' ? 'rgba(137,96,247,0.1)' :
+                                           visitor.device === 'Tablet' ? 'rgba(77,120,255,0.1)' :
+                                           visitor.device === 'Bot' ? 'rgba(255,109,97,0.1)' :
+                                           'rgba(59,201,141,0.1)',
+                                color: visitor.device === 'Mobile' ? '#8960f7' :
+                                       visitor.device === 'Tablet' ? '#4d78ff' :
+                                       visitor.device === 'Bot' ? '#ff6d61' :
+                                       '#3bc98d',
+                              }}>
+                                {getDeviceIcon(visitor.device)}
+                                {visitor.device || '-'}
+                              </span>
+                            </td>
+                            <td>
+                              <div>{visitor.browser || '-'}</div>
+                              <div style={{ fontSize: '12px', color: '#596278', marginTop: '2px' }}>
+                                {visitor.os || '-'}
+                              </div>
+                            </td>
+                            <td>
+                              <code style={{
+                                fontFamily: '"DM Mono", monospace',
+                                fontSize: '12px',
+                              }}>
+                                {visitor.page || '/'}
+                              </code>
+                            </td>
+                            <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {visitor.referrer === 'Direct' ? (
+                                <span className={styles.badge} style={{ background: 'rgba(59,201,141,0.15)', color: '#2a9d6a', borderColor: 'rgba(59,201,141,0.3)' }}>
+                                  Direct
+                                </span>
+                              ) : (
+                                <span style={{ fontSize: '13px', color: '#4d78ff' }} title={visitor.referrer}>
+                                  {visitor.referrer || '-'}
+                                </span>
+                              )}
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
           )}
 
         </main>
